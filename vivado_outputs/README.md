@@ -6,11 +6,11 @@ This folder contains the Vivado build script and output files for the Versal DMA
 
 | File | Description |
 |------|-------------|
-| `build_all_dma_v2.tcl` | Vivado TCL script to build the design |
-| `design_all_dma_v2.xsa` | Hardware platform export (use with Vitis) |
-| `design_all_dma_v2.pdi` | Programmable Device Image (for JTAG programming) |
+| `build_all_dma_v3.tcl` | Vivado TCL script to build the design (recommended) |
+| `design_all_dma_v3.xsa` | Hardware platform export (use with Vitis) |
+| `design_all_dma_v3.pdi` | Programmable Device Image (for JTAG programming) |
 
-## v2 Design Improvements
+## v3 Design Improvements
 
 1. **LPD DMA (ADMA) NoC Path**: Added M_AXI_LPD interface to allow ADMA access to LPDDR4 via NoC
 2. **AXI DMA 26-bit Length**: Increased buffer length from 14-bit (16KB max) to 26-bit (64MB max)

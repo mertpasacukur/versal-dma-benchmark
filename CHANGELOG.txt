@@ -3,15 +3,15 @@ DMA BENCHMARK APPLICATION - CHANGELOG
 ================================================================================
 
 ================================================================================
-VERSION: v8_vivado_v2 (2026-01-31)
+VERSION: v8_vivado_v3 (2026-01-31)
 ================================================================================
 
 CHANGES:
 --------
-1. [VIVADO] New build script: build_all_dma_v2.tcl
-   - Added M_AXI_LPD interface to CIPS for LPD DMA (ADMA) access
-   - Added NoC path from M_AXI_LPD to LPDDR4 (MC_0)
-   - LPD DMA can now access LPDDR4 memory via NoC
+1. [VIVADO] New build script: build_all_dma_v3.tcl
+   - Fixed NoC bandwidth constraints (reduced from 5000 to 1000 MB/s)
+   - LPD DMA uses internal CIPS NoC paths (removed M_AXI_LPD attempt)
+   - Successfully builds and generates PDI/XSA
 
 2. [VIVADO] AXI DMA buffer length increased
    - Changed c_sg_length_width from default 14-bit to 26-bit
@@ -25,11 +25,16 @@ CHANGES:
    - Updated comments to reflect 26-bit length (64MB max)
    - Increased default test sizes from 8KB to 64KB
 
-VIVADO OUTPUT FILES:
---------------------
-After building with build_all_dma_v2.tcl:
-- vivado/export/design_all_dma_v2.xsa
-- vivado/export/design_all_dma_v2.pdi
+VIVADO OUTPUT FILES (INCLUDED):
+-------------------------------
+- vivado_outputs/design_all_dma_v3.xsa (use with Vitis)
+- vivado_outputs/design_all_dma_v3.pdi (for JTAG programming)
+- vivado_outputs/build_all_dma_v3.tcl (build script)
+
+NOTE ON LPD DMA:
+----------------
+LPD DMA (ADMA) accesses memory through internal CIPS NoC paths.
+If ADMA still has issues accessing LPDDR4, use OCM (0xFFFC0000) for tests.
 
 ================================================================================
 VERSION: v7_int_printing (2026-01-31)
