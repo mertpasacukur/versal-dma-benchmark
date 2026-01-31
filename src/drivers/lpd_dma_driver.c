@@ -180,6 +180,7 @@ int lpd_dma_configure_channel(uint32_t channel, bool use_irq)
 int lpd_dma_transfer(uint32_t channel, uint64_t src_addr, uint64_t dst_addr, uint32_t length)
 {
     uint32_t ctrl0;
+    uint32_t status, isr;
 
     if (channel >= LPD_DMA_NUM_CHANNELS) {
         return DMA_ERROR_INVALID_PARAM;
@@ -203,33 +204,54 @@ int lpd_dma_transfer(uint32_t channel, uint64_t src_addr, uint64_t dst_addr, uin
     g_LpdDma.channels[channel].transfer_error = 0;
     g_LpdDma.channels[channel].busy = true;
 
-    /* Clear any pending interrupts */
+    /* Step 1: Disable channel first */
+    lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_CTRL2, 0);
+
+    /* Step 2: Clear any pending interrupts */
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_ISR, XLPDDMA_IXR_ALL_MASK);
 
-    /* Setup source descriptor */
+    /* Step 3: Setup source descriptor */
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_SRC_DSCR_WRD0, (uint32_t)(src_addr & 0xFFFFFFFF));
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_SRC_DSCR_WRD1, (uint32_t)(src_addr >> 32));
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_SRC_DSCR_WRD2, length);
-    lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_SRC_DSCR_WRD3, XLPDDMA_DESC_CTRL_INTR_EN);
+    lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_SRC_DSCR_WRD3, 0);  /* Simple mode, no flags */
 
-    /* Setup destination descriptor */
+    /* Step 4: Setup destination descriptor */
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_DST_DSCR_WRD0, (uint32_t)(dst_addr & 0xFFFFFFFF));
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_DST_DSCR_WRD1, (uint32_t)(dst_addr >> 32));
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_DST_DSCR_WRD2, length);
-    lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_DST_DSCR_WRD3, XLPDDMA_DESC_CTRL_INTR_EN);
+    lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_DST_DSCR_WRD3, 0);  /* Simple mode, no flags */
 
-    /* Configure for normal mode, simple pointer type */
-    ctrl0 = XLPDDMA_CTRL0_MODE_NORMAL;
+    /* Step 5: Set total byte count */
+    lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_TOTAL_BYTE, length);
+
+    /* Step 6: Configure for normal mode, simple pointer type */
+    ctrl0 = XLPDDMA_CTRL0_MODE_NORMAL;  /* Normal read-write mode */
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_CTRL0, ctrl0);
 
-    /* Memory barrier to ensure all descriptor writes are complete */
+    /* Memory barrier to ensure all writes are complete */
     __asm__ __volatile__("dsb sy" ::: "memory");
 
-    /* Start transfer by writing to CTRL2 register
-     * Bit 0: Enable DMA - setting this starts the transfer */
+    /* Debug: Show status before start */
+    status = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_STATUS);
+    isr = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_ISR);
+    LOG_DEBUG("LPD DMA ch%lu: Before start - STATUS=0x%08lX, ISR=0x%08lX\r\n",
+              (unsigned long)channel, (unsigned long)status, (unsigned long)isr);
+    LOG_DEBUG("LPD DMA ch%lu: src=0x%08lX%08lX, dst=0x%08lX%08lX, len=%lu\r\n",
+              (unsigned long)channel,
+              (unsigned long)(src_addr >> 32), (unsigned long)(src_addr & 0xFFFFFFFF),
+              (unsigned long)(dst_addr >> 32), (unsigned long)(dst_addr & 0xFFFFFFFF),
+              (unsigned long)length);
+
+    /* Step 7: Start transfer by enabling channel */
     lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_CTRL2, 1);
 
-    LOG_DEBUG("LPD DMA ch%lu: Transfer started, CTRL2=1\r\n", (unsigned long)channel);
+    /* Small delay then check if started */
+    usleep(10);
+    status = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_STATUS);
+    isr = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_ISR);
+    LOG_DEBUG("LPD DMA ch%lu: After start - STATUS=0x%08lX, ISR=0x%08lX\r\n",
+              (unsigned long)channel, (unsigned long)status, (unsigned long)isr);
 
     return DMA_SUCCESS;
 }
@@ -321,6 +343,7 @@ int lpd_dma_wait_complete(uint32_t channel, uint32_t timeout_us)
 {
     uint32_t status;
     uint32_t isr;
+    uint32_t total_bytes;
     uint32_t elapsed_us = 0;
     uint32_t poll_interval_us = 10;
 
@@ -331,21 +354,25 @@ int lpd_dma_wait_complete(uint32_t channel, uint32_t timeout_us)
     while (elapsed_us < timeout_us) {
         /* Check interrupt status register */
         isr = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_ISR);
+        status = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_STATUS);
 
         /* Check for errors */
         if (isr & XLPDDMA_IXR_ERR_MASK) {
             g_LpdDma.channels[channel].transfer_error = isr;
             g_LpdDma.channels[channel].errors++;
             g_LpdDma.channels[channel].busy = false;
-            LOG_ERROR("LPD DMA ch%lu Error: ISR=0x%08lX\r\n",
-                      (unsigned long)channel, (unsigned long)isr);
+            LOG_ERROR("LPD DMA ch%lu Error: ISR=0x%08lX, STATUS=0x%08lX\r\n",
+                      (unsigned long)channel, (unsigned long)isr, (unsigned long)status);
             /* Clear interrupt */
             lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_ISR, isr);
             return DMA_ERROR_DMA_FAIL;
         }
 
-        /* Check for completion */
+        /* Check for completion via DMA_DONE interrupt */
         if (isr & XLPDDMA_IXR_DMA_DONE) {
+            total_bytes = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_TOTAL_BYTE);
+            LOG_DEBUG("LPD DMA ch%lu: Done via ISR, total_bytes=%lu\r\n",
+                      (unsigned long)channel, (unsigned long)total_bytes);
             g_LpdDma.channels[channel].transfer_complete = true;
             g_LpdDma.channels[channel].num_transfers++;
             g_LpdDma.channels[channel].busy = false;
@@ -354,12 +381,13 @@ int lpd_dma_wait_complete(uint32_t channel, uint32_t timeout_us)
             return DMA_SUCCESS;
         }
 
-        /* Also check status register for idle */
-        status = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_STATUS);
+        /* Also check status register for idle (transfer may complete without DMA_DONE) */
         if ((status & XLPDDMA_STATUS_STATE_MASK) == XLPDDMA_STATUS_STATE_IDLE) {
-            /* Channel went idle, check if transfer was successful */
-            isr = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_ISR);
+            /* Channel went idle, might be done */
+            total_bytes = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_TOTAL_BYTE);
             if (!(isr & XLPDDMA_IXR_ERR_MASK)) {
+                LOG_DEBUG("LPD DMA ch%lu: Done via IDLE, total_bytes=%lu, ISR=0x%08lX\r\n",
+                          (unsigned long)channel, (unsigned long)total_bytes, (unsigned long)isr);
                 g_LpdDma.channels[channel].transfer_complete = true;
                 g_LpdDma.channels[channel].num_transfers++;
                 g_LpdDma.channels[channel].busy = false;
@@ -375,8 +403,10 @@ int lpd_dma_wait_complete(uint32_t channel, uint32_t timeout_us)
     g_LpdDma.channels[channel].busy = false;
     status = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_STATUS);
     isr = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_ISR);
-    LOG_ERROR("LPD DMA ch%lu Timeout: STATUS=0x%08lX, ISR=0x%08lX\r\n",
-              (unsigned long)channel, (unsigned long)status, (unsigned long)isr);
+    total_bytes = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_TOTAL_BYTE);
+    LOG_ERROR("LPD DMA ch%lu Timeout: STATUS=0x%08lX, ISR=0x%08lX, TOTAL_BYTE=%lu\r\n",
+              (unsigned long)channel, (unsigned long)status, (unsigned long)isr,
+              (unsigned long)total_bytes);
     return DMA_ERROR_TIMEOUT;
 }
 

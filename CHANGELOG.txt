@@ -3,6 +3,29 @@ DMA BENCHMARK APPLICATION - CHANGELOG
 ================================================================================
 
 ================================================================================
+VERSION: v5_lpd_dma_debug (2026-01-31)
+================================================================================
+
+CHANGES:
+--------
+1. [FIX] LPD DMA: Still not transferring data after CTRL2 change
+   - File: src/drivers/lpd_dma_driver.c
+   - Problem: ZDMA transfer not starting despite CTRL2=1
+   - Root cause analysis from logs: dst buffer still shows 0xDE (fill pattern)
+   - Solution: Complete rewrite of transfer sequence:
+     a) Added explicit channel disable before setup (CTRL2=0)
+     b) Added TOTAL_BYTE register programming
+     c) Changed descriptor WRD3 to 0 (simple mode, no flags)
+     d) Added extensive debug logging (STATUS, ISR before/after)
+     e) Added small delay after start to capture initial state
+
+2. [DEBUG] LPD DMA: Enhanced wait_complete diagnostics
+   - File: src/drivers/lpd_dma_driver.c
+   - Added TOTAL_BYTE readout on completion and timeout
+   - Shows detailed completion reason (ISR vs IDLE state)
+   - Better error reporting with all relevant register values
+
+================================================================================
 VERSION: v4_timer_debug (2026-01-31)
 ================================================================================
 
