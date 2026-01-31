@@ -200,8 +200,8 @@ int axi_dma_test_run_all(void)
 int axi_dma_test_throughput(MemoryRegion_t src_region, MemoryRegion_t dst_region, TestResult_t* result)
 {
     uint64_t src_addr, dst_addr;
-    /* AXI DMA max transfer is 16383 bytes (14-bit length register) */
-    uint32_t size = result->transfer_size > 0 ? result->transfer_size : KB(8);
+    /* AXI DMA max transfer is 64MB (26-bit length register in v2 Vivado design) */
+    uint32_t size = result->transfer_size > 0 ? result->transfer_size : KB(64);
     int status;
 
     /* Clamp to hardware limit */
@@ -303,8 +303,8 @@ int axi_dma_test_latency(MemoryRegion_t src_region, MemoryRegion_t dst_region, T
 int axi_dma_test_integrity(DataPattern_t pattern, TestResult_t* result)
 {
     uint64_t src_addr, dst_addr;
-    /* AXI DMA max transfer is 16383 bytes (14-bit length register) */
-    uint32_t size = KB(8);  /* Use 8KB which fits in 14-bit limit */
+    /* AXI DMA max transfer is 64MB (26-bit length register in v2 Vivado design) */
+    uint32_t size = KB(64);  /* Use 64KB for integrity test */
     int status;
 
     src_addr = memory_get_test_addr(MEM_REGION_DDR4, SRC_BUFFER_OFFSET, size);
@@ -324,7 +324,7 @@ int axi_dma_test_integrity(DataPattern_t pattern, TestResult_t* result)
 int axi_dma_test_simple_mode(TestResult_t* result)
 {
     uint64_t src_addr, dst_addr;
-    uint32_t size = KB(8);  /* 8KB fits in 14-bit limit */
+    uint32_t size = KB(64);  /* 64KB - can go up to 64MB with 26-bit length */
 
     src_addr = memory_get_test_addr(MEM_REGION_DDR4, SRC_BUFFER_OFFSET, size);
     dst_addr = memory_get_test_addr(MEM_REGION_DDR4, DST_BUFFER_OFFSET, size);
@@ -336,7 +336,7 @@ int axi_dma_test_simple_mode(TestResult_t* result)
 int axi_dma_test_sg_mode(TestResult_t* result)
 {
     uint64_t src_addr, dst_addr;
-    uint32_t size = KB(8);  /* 8KB fits in 14-bit limit */
+    uint32_t size = KB(64);  /* 64KB - can go up to 64MB with 26-bit length */
 
     src_addr = memory_get_test_addr(MEM_REGION_DDR4, SRC_BUFFER_OFFSET, size);
     dst_addr = memory_get_test_addr(MEM_REGION_DDR4, DST_BUFFER_OFFSET, size);

@@ -3,6 +3,35 @@ DMA BENCHMARK APPLICATION - CHANGELOG
 ================================================================================
 
 ================================================================================
+VERSION: v8_vivado_v2 (2026-01-31)
+================================================================================
+
+CHANGES:
+--------
+1. [VIVADO] New build script: build_all_dma_v2.tcl
+   - Added M_AXI_LPD interface to CIPS for LPD DMA (ADMA) access
+   - Added NoC path from M_AXI_LPD to LPDDR4 (MC_0)
+   - LPD DMA can now access LPDDR4 memory via NoC
+
+2. [VIVADO] AXI DMA buffer length increased
+   - Changed c_sg_length_width from default 14-bit to 26-bit
+   - Max transfer size: 64MB (was 16KB)
+
+3. [VIVADO] AXI CDMA burst size reduced
+   - Reduced C_M_AXI_MAX_BURST_LEN from 256 to 64
+   - Better NoC compatibility
+
+4. [SOFTWARE] Updated axi_dma_test.c
+   - Updated comments to reflect 26-bit length (64MB max)
+   - Increased default test sizes from 8KB to 64KB
+
+VIVADO OUTPUT FILES:
+--------------------
+After building with build_all_dma_v2.tcl:
+- vivado/export/design_all_dma_v2.xsa
+- vivado/export/design_all_dma_v2.pdi
+
+================================================================================
 VERSION: v7_int_printing (2026-01-31)
 ================================================================================
 
