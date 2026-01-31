@@ -1,0 +1,21 @@
+# Build artifacts
+Debug/
+Release/
+*.o
+*.elf
+*.bin
+*.map
+
+# IDE files
+.settings/
+.project
+.cproject
+*.launch
+
+# Zip files
+*.zip
+
+# Temporary files
+*.tmp
+*.bak
+*~

@@ -1,0 +1,84 @@
+================================================================================
+DMA BENCHMARK APPLICATION - CHANGELOG
+================================================================================
+
+================================================================================
+VERSION: v4_timer_debug (2026-01-31)
+================================================================================
+
+CHANGES:
+--------
+1. [FIX] LPD DMA: Transfer not working
+   - File: src/drivers/lpd_dma_driver.c
+   - File: src/drivers/lpd_dma_driver.h
+   - Problem: DMA transfer was not starting, destination buffer remained unchanged
+   - Solution: Changed transfer trigger from CTRL1 to CTRL2 register
+   - Added XLPDDMA_ZDMA_CH_CTRL2 (0x200) register definition
+   - Write CTRL2=1 to start transfer instead of CTRL1=0
+
+2. [FIX] RANDOM pattern verification failure
+   - File: src/utils/data_patterns.c
+   - Problem: Static variable declared twice in different switch branches
+   - Solution: Moved rand_val variable outside switch statement
+
+3. [FIX] CHECKERBOARD pattern verification failure
+   - File: src/utils/data_patterns.c
+   - Problem: Fill uses 0xAA55AA55 (little-endian: 0x55,0xAA,0x55,0xAA)
+             but verify expected (i&1)?0x55:0xAA (0xAA,0x55,0xAA,0x55)
+   - Solution: Changed verify to (i&1)?0xAA:0x55 to match fill pattern
+
+4. [FIX] Unrealistic throughput values (111 GB/s)
+   - File: src/utils/timer_utils.c
+   - Problem: PMU cycle counter may not be enabled/accessible
+   - Solution: Added timer calibration test at init
+   - Now shows start/end/elapsed cycles for 1ms delay
+   - Warns if measured cycles differ significantly from expected
+
+================================================================================
+VERSION: v3 (2026-01-31)
+================================================================================
+
+CHANGES:
+--------
+1. [FIX] AXI DMA: "Length exceeds max 16383" error
+   - File: src/tests/axi_dma_test.c
+   - Problem: Default test size 64KB exceeded 14-bit max (16383 bytes)
+   - Solution: Changed default to 8KB, added clamp to AXI_DMA_MAX_TRANSFER_SIZE
+
+2. [FIX] AXI CDMA: Crash when accessing BRAM/URAM
+   - File: src/tests/axi_cdma_test.c
+   - Problem: Memory matrix test tried to access regions with test_size=0
+   - Solution: Skip regions where memory_get_max_size() returns 0
+
+3. [FIX] LPD DMA: Added debug output for integrity test
+   - File: src/tests/lpd_dma_test.c
+   - Shows dst[0..7] bytes after transfer to diagnose issues
+
+================================================================================
+VERSION: v2 (2026-01-31)
+================================================================================
+
+CHANGES:
+--------
+1. [ADD] Debug logging throughout AXI DMA driver
+   - File: src/drivers/axi_dma_driver.c
+   - Added LOG_ALWAYS/LOG_DEBUG for initialization, transfer, wait functions
+   - Shows register values, addresses, status codes
+
+2. [FIX] Timer: Changed from custom PMU timer to usleep()
+   - File: src/drivers/axi_dma_driver.c
+   - Wait functions now use usleep() for reliable timing
+
+================================================================================
+VERSION: v1 (2026-01-30)
+================================================================================
+
+Initial release with:
+- AXI DMA driver (SG mode)
+- AXI CDMA driver (SG mode)
+- AXI MCDMA driver (4 channels)
+- LPD DMA driver (8 channels)
+- Test modules for each DMA type
+- Utility functions (timer, memory, cache, patterns, results logger)
+
+================================================================================
