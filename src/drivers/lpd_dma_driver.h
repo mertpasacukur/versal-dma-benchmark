@@ -77,29 +77,36 @@
 #define XLPDDMA_CTRL1_RESUME_MASK  0x00000001  /* Resume */
 
 /*******************************************************************************
- * LPD DMA Status Register Bits
+ * LPD DMA Status Register Bits (from Xilinx xzdma_hw.h)
  ******************************************************************************/
 
 #define XLPDDMA_STATUS_STATE_MASK  0x00000003  /* State mask */
-#define XLPDDMA_STATUS_STATE_IDLE  0x00000000  /* Idle */
+#define XLPDDMA_STATUS_STATE_DONE  0x00000000  /* Done/Idle (success) */
 #define XLPDDMA_STATUS_STATE_PAUSE 0x00000001  /* Paused */
 #define XLPDDMA_STATUS_STATE_BUSY  0x00000002  /* Busy */
+#define XLPDDMA_STATUS_STATE_ERR   0x00000003  /* Done with error */
+
+/* Legacy alias */
+#define XLPDDMA_STATUS_STATE_IDLE  XLPDDMA_STATUS_STATE_DONE
 
 /*******************************************************************************
- * LPD DMA Interrupt Bits
+ * LPD DMA Interrupt Bits (from Xilinx xzdma_hw.h)
  ******************************************************************************/
 
+#define XLPDDMA_IXR_DMA_PAUSE      0x00000800  /* DMA paused */
 #define XLPDDMA_IXR_DMA_DONE       0x00000400  /* DMA done */
-#define XLPDDMA_IXR_DMA_PAUSE      0x00000200  /* DMA paused */
-#define XLPDDMA_IXR_DMA_ERR        0x00000100  /* DMA error */
-#define XLPDDMA_IXR_AXI_RDERR      0x00000040  /* AXI read error */
-#define XLPDDMA_IXR_AXI_WRERR      0x00000020  /* AXI write error */
-#define XLPDDMA_IXR_DSCR_INV       0x00000008  /* Invalid descriptor */
-#define XLPDDMA_IXR_SRC_DSCR_DONE  0x00000004  /* Source descriptor done */
-#define XLPDDMA_IXR_DST_DSCR_DONE  0x00000002  /* Dest descriptor done */
+#define XLPDDMA_IXR_AXI_WR_DATA    0x00000200  /* AXI write data error */
+#define XLPDDMA_IXR_AXI_RD_DATA    0x00000100  /* AXI read data error */
+#define XLPDDMA_IXR_AXI_RD_DST_DSCR 0x00000080 /* AXI read dst descriptor error */
+#define XLPDDMA_IXR_AXI_RD_SRC_DSCR 0x00000040 /* AXI read src descriptor error */
+#define XLPDDMA_IXR_DST_ACCT_ERR   0x00000020  /* DST interrupt count overflow */
+#define XLPDDMA_IXR_SRC_ACCT_ERR   0x00000010  /* SRC interrupt count overflow */
+#define XLPDDMA_IXR_BYTE_CNT_OVRFL 0x00000008  /* Byte count overflow */
+#define XLPDDMA_IXR_DST_DSCR_DONE  0x00000004  /* Dest descriptor done */
+#define XLPDDMA_IXR_SRC_DSCR_DONE  0x00000002  /* Source descriptor done */
 #define XLPDDMA_IXR_INV_APB        0x00000001  /* Invalid APB access */
-#define XLPDDMA_IXR_ALL_MASK       0x000007FF  /* All interrupts */
-#define XLPDDMA_IXR_ERR_MASK       0x00000169  /* All error interrupts */
+#define XLPDDMA_IXR_ALL_MASK       0x00000FFF  /* All interrupts */
+#define XLPDDMA_IXR_ERR_MASK       0x00000BF9  /* All error interrupts */
 
 /*******************************************************************************
  * LPD DMA Descriptor

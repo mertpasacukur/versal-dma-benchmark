@@ -363,6 +363,25 @@ int lpd_dma_wait_complete(uint32_t channel, uint32_t timeout_us)
             g_LpdDma.channels[channel].busy = false;
             LOG_ERROR("LPD DMA ch%lu Error: ISR=0x%08lX, STATUS=0x%08lX\r\n",
                       (unsigned long)channel, (unsigned long)isr, (unsigned long)status);
+            /* Decode specific errors */
+            if (isr & XLPDDMA_IXR_AXI_WR_DATA) {
+                LOG_ERROR("  -> AXI Write Data Error (can't write to destination)\r\n");
+            }
+            if (isr & XLPDDMA_IXR_AXI_RD_DATA) {
+                LOG_ERROR("  -> AXI Read Data Error (can't read from source)\r\n");
+            }
+            if (isr & XLPDDMA_IXR_AXI_RD_DST_DSCR) {
+                LOG_ERROR("  -> AXI Read Dst Descriptor Error\r\n");
+            }
+            if (isr & XLPDDMA_IXR_AXI_RD_SRC_DSCR) {
+                LOG_ERROR("  -> AXI Read Src Descriptor Error\r\n");
+            }
+            if (isr & XLPDDMA_IXR_INV_APB) {
+                LOG_ERROR("  -> Invalid APB Access\r\n");
+            }
+            if ((status & XLPDDMA_STATUS_STATE_MASK) == XLPDDMA_STATUS_STATE_ERR) {
+                LOG_ERROR("  -> STATUS shows DONE_WITH_ERROR state\r\n");
+            }
             /* Clear interrupt */
             lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_ISR, isr);
             return DMA_ERROR_DMA_FAIL;
@@ -381,7 +400,26 @@ int lpd_dma_wait_complete(uint32_t channel, uint32_t timeout_us)
             return DMA_SUCCESS;
         }
 
-        /* Also check status register for idle (transfer may complete without DMA_DONE) */
+        /* Check for error state (STATUS = 0x03 means done with error) */
+        if ((status & XLPDDMA_STATUS_STATE_MASK) == XLPDDMA_STATUS_STATE_ERR) {
+            g_LpdDma.channels[channel].transfer_error = isr;
+            g_LpdDma.channels[channel].errors++;
+            g_LpdDma.channels[channel].busy = false;
+            LOG_ERROR("LPD DMA ch%lu: STATUS=DONE_WITH_ERROR, ISR=0x%08lX\r\n",
+                      (unsigned long)channel, (unsigned long)isr);
+            if (isr & XLPDDMA_IXR_AXI_WR_DATA) {
+                LOG_ERROR("  -> AXI Write Error: ADMA cannot write to dst address!\r\n");
+                LOG_ERROR("  -> This usually means ADMA doesn't have NoC access to LPDDR4.\r\n");
+                LOG_ERROR("  -> Try using OCM (0xFFFC0000) instead.\r\n");
+            }
+            if (isr & XLPDDMA_IXR_AXI_RD_DATA) {
+                LOG_ERROR("  -> AXI Read Error: ADMA cannot read from src address!\r\n");
+            }
+            lpd_dma_write_reg(channel, XLPDDMA_ZDMA_CH_ISR, isr);
+            return DMA_ERROR_DMA_FAIL;
+        }
+
+        /* Check for idle state (transfer completed successfully) */
         if ((status & XLPDDMA_STATUS_STATE_MASK) == XLPDDMA_STATUS_STATE_IDLE) {
             /* Channel went idle, might be done */
             total_bytes = lpd_dma_read_reg(channel, XLPDDMA_ZDMA_CH_TOTAL_BYTE);

@@ -3,6 +3,36 @@ DMA BENCHMARK APPLICATION - CHANGELOG
 ================================================================================
 
 ================================================================================
+VERSION: v6_lpd_dma_axi_error (2026-01-31)
+================================================================================
+
+CHANGES:
+--------
+1. [ANALYSIS] LPD DMA: Identified root cause - AXI Write Error
+   - Log analysis showed: STATUS=0x03 (DONE_WITH_ERROR), ISR=0x600
+   - ISR 0x600 = DMA_DONE (0x400) | AXI_WR_DATA (0x200)
+   - Root cause: ADMA cannot write to LPDDR4 addresses!
+   - ADMA in Versal needs NoC path to access LPDDR4
+
+2. [FIX] LPD DMA: Updated interrupt bit definitions
+   - File: src/drivers/lpd_dma_driver.h
+   - Fixed ISR bit masks to match Xilinx xzdma_hw.h
+   - Added XLPDDMA_STATUS_STATE_ERR (0x03) for done-with-error state
+   - Corrected: AXI_WR_DATA=0x200, AXI_RD_DATA=0x100
+
+3. [FIX] LPD DMA: Added proper error state detection
+   - File: src/drivers/lpd_dma_driver.c
+   - Detect STATUS=0x03 as error state (was being ignored)
+   - Decode specific error bits (AXI_WR_DATA, AXI_RD_DATA, etc.)
+   - Added helpful error message suggesting OCM instead of LPDDR4
+
+KNOWN ISSUE:
+------------
+ADMA (LPD DMA) cannot access LPDDR4 memory directly. This is a Vivado
+design issue - ADMA needs NoC connection to DDR. Current workaround:
+use OCM (0xFFFC0000) for LPD DMA tests.
+
+================================================================================
 VERSION: v5_lpd_dma_debug (2026-01-31)
 ================================================================================
 
