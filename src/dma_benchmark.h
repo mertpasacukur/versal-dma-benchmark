@@ -127,20 +127,20 @@ typedef struct {
     DmaMode_t       mode;
     uint32_t        transfer_size;
 
-    /* Performance metrics */
-    double          throughput_mbps;   /* MB/s */
-    double          latency_us;        /* microseconds */
-    double          setup_time_us;     /* DMA setup time */
-    double          cpu_utilization;   /* percentage (for polling) */
+    /* Performance metrics (integer to support xil_printf) */
+    uint32_t        throughput_mbps;   /* MB/s (whole number) */
+    uint32_t        latency_us;        /* microseconds (whole number) */
+    uint32_t        latency_ns;        /* nanoseconds for sub-us precision */
+    uint32_t        setup_time_us;     /* DMA setup time */
+    uint32_t        cpu_utilization;   /* percentage (for polling) */
 
-    /* Statistics */
-    double          min_throughput;
-    double          max_throughput;
-    double          avg_throughput;
-    double          stddev_throughput;
-    double          min_latency;
-    double          max_latency;
-    double          avg_latency;
+    /* Statistics (all in MB/s or us as integers) */
+    uint32_t        min_throughput;
+    uint32_t        max_throughput;
+    uint32_t        avg_throughput;
+    uint32_t        min_latency;
+    uint32_t        max_latency;
+    uint32_t        avg_latency;
 
     /* Integrity */
     bool            data_integrity;    /* Pass/Fail */
@@ -190,7 +190,7 @@ typedef struct {
     uint32_t        tests_failed;
     uint64_t        total_bytes_transferred;
     uint64_t        total_time_us;
-    double          overall_throughput_mbps;
+    uint32_t        overall_throughput_mbps;  /* MB/s as integer */
 } BenchmarkStats_t;
 
 /*******************************************************************************
@@ -309,13 +309,17 @@ void benchmark_print_summary(void);
 /* Array size */
 #define ARRAY_SIZE(x)           (sizeof(x) / sizeof((x)[0]))
 
-/* Throughput calculation: MB/s from bytes and microseconds */
+/* Throughput calculation: MB/s from bytes and microseconds (integer math)
+ * Formula: throughput = bytes/time = bytes/(us/1000000) = bytes*1000000/us bytes/sec
+ * In MB/s: bytes*1000000/(us*1048576) = bytes*1000000/(us<<20)
+ * Simplified to avoid overflow: (bytes>>10) * 1000 / us  (approximation in KB/ms = MB/s)
+ */
 #define CALC_THROUGHPUT_MBPS(bytes, us) \
-    (((double)(bytes) / (1024.0 * 1024.0)) / ((double)(us) / 1000000.0))
+    (((us) > 0) ? (uint32_t)(((uint64_t)(bytes) * 1000000ULL) / ((uint64_t)(us) * 1048576ULL)) : 0)
 
-/* Efficiency calculation */
+/* Efficiency calculation (returns percentage as integer) */
 #define CALC_EFFICIENCY(actual, theoretical) \
-    (((double)(actual) / (double)(theoretical)) * 100.0)
+    (((theoretical) > 0) ? (uint32_t)(((uint64_t)(actual) * 100ULL) / (uint64_t)(theoretical)) : 0)
 
 /*******************************************************************************
  * Error Codes

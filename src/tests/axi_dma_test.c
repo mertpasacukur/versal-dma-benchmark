@@ -110,7 +110,8 @@ static int run_single_transfer_test(uint64_t src_addr, uint64_t dst_addr,
     result->total_bytes = (uint64_t)size * iterations;
     result->total_time_us = elapsed_us;
     result->throughput_mbps = CALC_THROUGHPUT_MBPS(result->total_bytes, elapsed_us);
-    result->latency_us = (double)elapsed_us / iterations;
+    result->latency_us = elapsed_us / iterations;
+    result->latency_ns = 0;
     result->data_integrity = integrity;
     result->error_count = integrity ? 0 : 1;
     result->first_error_offset = integrity ? 0 : error_offset;
@@ -177,7 +178,7 @@ int axi_dma_test_run_all(void)
         result.dst_region = MEM_REGION_BRAM;
         status = axi_dma_test_throughput(MEM_REGION_DDR4, MEM_REGION_BRAM, &result);
         if (status == DMA_SUCCESS) {
-            LOG_RESULT("  DDR4 -> BRAM: %.2f MB/s\r\n", result.throughput_mbps);
+            LOG_RESULT("  DDR4 -> BRAM: %lu MB/s\r\n", (unsigned long)result.throughput_mbps);
         }
     }
 
@@ -188,7 +189,7 @@ int axi_dma_test_run_all(void)
         result.dst_region = MEM_REGION_OCM;
         status = axi_dma_test_throughput(MEM_REGION_DDR4, MEM_REGION_OCM, &result);
         if (status == DMA_SUCCESS) {
-            LOG_RESULT("  DDR4 -> OCM: %.2f MB/s\r\n", result.throughput_mbps);
+            LOG_RESULT("  DDR4 -> OCM: %lu MB/s\r\n", (unsigned long)result.throughput_mbps);
         }
     }
 
@@ -289,9 +290,11 @@ int axi_dma_test_latency(MemoryRegion_t src_region, MemoryRegion_t dst_region, T
     result->dst_region = dst_region;
     result->transfer_size = size;
     result->iterations = iterations;
-    result->latency_us = (double)total_ns / iterations / 1000.0;
-    result->min_latency = (double)min_ns / 1000.0;
-    result->max_latency = (double)max_ns / 1000.0;
+    /* Store latency in both us and ns for flexibility */
+    result->latency_ns = (uint32_t)(total_ns / iterations);
+    result->latency_us = result->latency_ns / 1000;
+    result->min_latency = (uint32_t)(min_ns / 1000);
+    result->max_latency = (uint32_t)(max_ns / 1000);
     result->data_integrity = true;
 
     return DMA_SUCCESS;

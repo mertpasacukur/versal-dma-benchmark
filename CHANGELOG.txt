@@ -3,6 +3,39 @@ DMA BENCHMARK APPLICATION - CHANGELOG
 ================================================================================
 
 ================================================================================
+VERSION: v7_int_printing (2026-01-31)
+================================================================================
+
+CHANGES:
+--------
+1. [FIX] Float printing compatibility with xil_printf
+   - Problem: xil_printf does not support %f format specifier
+   - Solution: Changed all performance metrics from double to uint32_t
+
+2. [CHANGE] TestResult_t structure (dma_benchmark.h)
+   - throughput_mbps: double -> uint32_t (MB/s as whole number)
+   - latency_us: double -> uint32_t
+   - Added latency_ns for sub-microsecond precision
+   - All statistics fields now uint32_t
+
+3. [CHANGE] CALC_THROUGHPUT_MBPS macro
+   - Now returns uint32_t using integer math
+   - Formula: (bytes * 1000000) / (us * 1048576)
+
+4. [UPDATE] All test files updated for integer printing
+   - axi_dma_test.c, axi_cdma_test.c, axi_mcdma_test.c, lpd_dma_test.c
+   - comparison_test.c - all double usage removed
+   - Format strings changed from %.2f to %lu
+
+5. [UPDATE] results_logger.c
+   - format_throughput() now takes uint32_t
+   - format_time() now takes uint32_t time_us and time_ns
+   - All LOG_RESULT calls use integer format
+
+6. [UPDATE] memory_utils.c
+   - memory_cpu_memcpy_benchmark() returns uint32_t instead of double
+
+================================================================================
 VERSION: v6_lpd_dma_axi_error (2026-01-31)
 ================================================================================
 

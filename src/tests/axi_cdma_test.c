@@ -90,7 +90,8 @@ static int run_cdma_transfer(uint64_t src_addr, uint64_t dst_addr,
     result->total_bytes = (uint64_t)size * iterations;
     result->total_time_us = elapsed_us;
     result->throughput_mbps = CALC_THROUGHPUT_MBPS(result->total_bytes, elapsed_us);
-    result->latency_us = (double)elapsed_us / iterations;
+    result->latency_us = elapsed_us / iterations;
+    result->latency_ns = 0;
     result->data_integrity = integrity;
     result->error_count = integrity ? 0 : 1;
     result->first_error_offset = integrity ? 0 : error_offset;
@@ -121,7 +122,7 @@ int axi_cdma_test_run_all(void)
         if (status == DMA_SUCCESS) {
             char size_str[32];
             results_logger_format_size(test_sizes[i], size_str, sizeof(size_str));
-            LOG_RESULT("  Size %s: %.2f MB/s\r\n", size_str, result.throughput_mbps);
+            LOG_RESULT("  Size %s: %lu MB/s\r\n", size_str, (unsigned long)result.throughput_mbps);
         }
     }
 
@@ -215,7 +216,8 @@ int axi_cdma_test_latency(MemoryRegion_t src_region, MemoryRegion_t dst_region,
     result->dst_region = dst_region;
     result->transfer_size = size;
     result->iterations = iterations;
-    result->latency_us = (double)total_ns / iterations / 1000.0;
+    result->latency_ns = (uint32_t)(total_ns / iterations);
+    result->latency_us = result->latency_ns / 1000;
     result->data_integrity = true;
 
     return DMA_SUCCESS;
@@ -291,7 +293,7 @@ int axi_cdma_test_memory_matrix(void)
             status = axi_cdma_test_throughput(regions[i], regions[j], test_size, &result);
 
             if (status == DMA_SUCCESS && result.data_integrity) {
-                LOG_RESULT(" %8.1f", result.throughput_mbps);
+                LOG_RESULT(" %8lu", (unsigned long)result.throughput_mbps);
             } else {
                 LOG_RESULT(" %8s", "---");
             }

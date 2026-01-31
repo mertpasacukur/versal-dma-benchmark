@@ -110,13 +110,13 @@ void results_logger_warn(const char* format, ...);
 void results_logger_progress(uint32_t current, uint32_t total, const char* test_name);
 
 /**
- * @brief Format throughput value
- * @param throughput_mbps Throughput in MB/s
+ * @brief Format throughput value (integer, xil_printf compatible)
+ * @param throughput_mbps Throughput in MB/s (integer)
  * @param buffer Output buffer
  * @param buffer_size Buffer size
  * @return Pointer to buffer
  */
-char* results_logger_format_throughput(double throughput_mbps, char* buffer, uint32_t buffer_size);
+char* results_logger_format_throughput(uint32_t throughput_mbps, char* buffer, uint32_t buffer_size);
 
 /**
  * @brief Format size value with appropriate unit
@@ -128,12 +128,13 @@ char* results_logger_format_throughput(double throughput_mbps, char* buffer, uin
 char* results_logger_format_size(uint64_t size_bytes, char* buffer, uint32_t buffer_size);
 
 /**
- * @brief Format time value with appropriate unit
- * @param time_us Time in microseconds
+ * @brief Format time value with appropriate unit (integer, xil_printf compatible)
+ * @param time_us Time in microseconds (integer)
+ * @param time_ns Time in nanoseconds for sub-us precision
  * @param buffer Output buffer
  * @param buffer_size Buffer size
  * @return Pointer to buffer
  */
-char* results_logger_format_time(double time_us, char* buffer, uint32_t buffer_size);
+char* results_logger_format_time(uint32_t time_us, uint32_t time_ns, char* buffer, uint32_t buffer_size);
 
 #endif /* RESULTS_LOGGER_H */

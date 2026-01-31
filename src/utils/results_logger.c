@@ -111,20 +111,21 @@ void results_logger_log_csv(const TestResult_t* result)
     /* CSV format:
      * dma_type,test_type,src_memory,dst_memory,transfer_size,data_pattern,mode,
      * throughput_mbps,latency_us,cpu_util,integrity,iterations
+     * Note: Using integer format for xil_printf compatibility
      */
-    LOG_RESULT("%s,%s,%s,%s,%lu,%s,%s,%.2f,%.2f,%.1f,%s,%lu\r\n",
+    LOG_RESULT("%s,%s,%s,%s,%lu,%s,%s,%lu,%lu,%lu,%s,%lu\r\n",
                dma_type_to_string(result->dma_type),
                test_type_to_string(result->test_type),
                memory_region_to_string(result->src_region),
                memory_region_to_string(result->dst_region),
-               result->transfer_size,
+               (unsigned long)result->transfer_size,
                pattern_to_string(result->pattern),
                dma_mode_to_string(result->mode),
-               result->throughput_mbps,
-               result->latency_us,
-               result->cpu_utilization,
+               (unsigned long)result->throughput_mbps,
+               (unsigned long)result->latency_us,
+               (unsigned long)result->cpu_utilization,
                result->data_integrity ? "PASS" : "FAIL",
-               result->iterations);
+               (unsigned long)result->iterations);
 }
 
 void results_logger_log_text(const TestResult_t* result)
@@ -139,7 +140,7 @@ void results_logger_log_text(const TestResult_t* result)
 
     results_logger_format_size(result->transfer_size, size_str, sizeof(size_str));
     results_logger_format_throughput(result->throughput_mbps, throughput_str, sizeof(throughput_str));
-    results_logger_format_time(result->latency_us, latency_str, sizeof(latency_str));
+    results_logger_format_time(result->latency_us, result->latency_ns, latency_str, sizeof(latency_str));
 
     LOG_RESULT("  [%s] %s -> %s, Size: %s\r\n",
                dma_type_to_string(result->dma_type),
@@ -161,12 +162,13 @@ void results_logger_print_csv_header(void)
 
 void results_logger_print_summary(void)
 {
+    uint32_t pass_rate = (g_TestCount > 0) ? ((g_PassCount * 100) / g_TestCount) : 0;
+
     LOG_RESULT("\r\nSession Summary:\r\n");
-    LOG_RESULT("  Total Tests: %lu\r\n", g_TestCount);
-    LOG_RESULT("  Passed:      %lu\r\n", g_PassCount);
-    LOG_RESULT("  Failed:      %lu\r\n", g_FailCount);
-    LOG_RESULT("  Pass Rate:   %.1f%%\r\n",
-               g_TestCount > 0 ? (100.0 * g_PassCount / g_TestCount) : 0.0);
+    LOG_RESULT("  Total Tests: %lu\r\n", (unsigned long)g_TestCount);
+    LOG_RESULT("  Passed:      %lu\r\n", (unsigned long)g_PassCount);
+    LOG_RESULT("  Failed:      %lu\r\n", (unsigned long)g_FailCount);
+    LOG_RESULT("  Pass Rate:   %lu%%\r\n", (unsigned long)pass_rate);
     LOG_RESULT("\r\n");
 }
 
@@ -213,12 +215,15 @@ void results_logger_progress(uint32_t current, uint32_t total, const char* test_
     LOG_RESULT("[%3lu%%] Test %lu/%lu: %s\r\n", percent, current, total, test_name);
 }
 
-char* results_logger_format_throughput(double throughput_mbps, char* buffer, uint32_t buffer_size)
+char* results_logger_format_throughput(uint32_t throughput_mbps, char* buffer, uint32_t buffer_size)
 {
-    if (throughput_mbps >= 1000.0) {
-        snprintf(buffer, buffer_size, "%.2f GB/s", throughput_mbps / 1000.0);
+    if (throughput_mbps >= 1000) {
+        /* Show as GB/s with one decimal using integer math: e.g., 12345 MB/s = 12.3 GB/s */
+        uint32_t gb = throughput_mbps / 1000;
+        uint32_t gb_frac = (throughput_mbps % 1000) / 100;  /* First decimal */
+        snprintf(buffer, buffer_size, "%lu.%lu GB/s", (unsigned long)gb, (unsigned long)gb_frac);
     } else {
-        snprintf(buffer, buffer_size, "%.2f MB/s", throughput_mbps);
+        snprintf(buffer, buffer_size, "%lu MB/s", (unsigned long)throughput_mbps);
     }
     return buffer;
 }
@@ -235,16 +240,26 @@ char* results_logger_format_size(uint64_t size_bytes, char* buffer, uint32_t buf
     return buffer;
 }
 
-char* results_logger_format_time(double time_us, char* buffer, uint32_t buffer_size)
+char* results_logger_format_time(uint32_t time_us, uint32_t time_ns, char* buffer, uint32_t buffer_size)
 {
-    if (time_us >= 1000000.0) {
-        snprintf(buffer, buffer_size, "%.2f s", time_us / 1000000.0);
-    } else if (time_us >= 1000.0) {
-        snprintf(buffer, buffer_size, "%.2f ms", time_us / 1000.0);
-    } else if (time_us >= 1.0) {
-        snprintf(buffer, buffer_size, "%.2f us", time_us);
+    if (time_us >= 1000000) {
+        /* Show as seconds */
+        uint32_t s = time_us / 1000000;
+        uint32_t s_frac = (time_us % 1000000) / 10000;  /* Two decimals */
+        snprintf(buffer, buffer_size, "%lu.%02lu s", (unsigned long)s, (unsigned long)s_frac);
+    } else if (time_us >= 1000) {
+        /* Show as milliseconds */
+        uint32_t ms = time_us / 1000;
+        uint32_t ms_frac = (time_us % 1000) / 10;  /* Two decimals */
+        snprintf(buffer, buffer_size, "%lu.%02lu ms", (unsigned long)ms, (unsigned long)ms_frac);
+    } else if (time_us > 0) {
+        /* Show as microseconds */
+        snprintf(buffer, buffer_size, "%lu us", (unsigned long)time_us);
+    } else if (time_ns > 0) {
+        /* Show as nanoseconds */
+        snprintf(buffer, buffer_size, "%lu ns", (unsigned long)time_ns);
     } else {
-        snprintf(buffer, buffer_size, "%.0f ns", time_us * 1000.0);
+        snprintf(buffer, buffer_size, "0 us");
     }
     return buffer;
 }

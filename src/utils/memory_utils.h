@@ -75,9 +75,9 @@ bool memory_verify_pattern(const void* buf, uint32_t size, uint8_t pattern_type,
  * @param src Source address
  * @param size Size in bytes
  * @param iterations Number of iterations
- * @return Throughput in MB/s
+ * @return Throughput in MB/s (integer)
  */
-double memory_cpu_memcpy_benchmark(void* dst, const void* src, uint32_t size, uint32_t iterations);
+uint32_t memory_cpu_memcpy_benchmark(void* dst, const void* src, uint32_t size, uint32_t iterations);
 
 /**
  * @brief Get maximum available size for a memory region

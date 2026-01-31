@@ -182,7 +182,7 @@ bool memory_verify_pattern(const void* buf, uint32_t size, uint8_t pattern_type,
     return true;
 }
 
-double memory_cpu_memcpy_benchmark(void* dst, const void* src, uint32_t size, uint32_t iterations)
+uint32_t memory_cpu_memcpy_benchmark(void* dst, const void* src, uint32_t size, uint32_t iterations)
 {
     uint64_t start_time, elapsed_us;
     uint32_t i;
@@ -207,7 +207,7 @@ double memory_cpu_memcpy_benchmark(void* dst, const void* src, uint32_t size, ui
 
     elapsed_us = timer_stop_us(start_time);
 
-    /* Calculate throughput */
+    /* Calculate throughput (returns uint32_t) */
     uint64_t total_bytes = (uint64_t)size * iterations;
     return CALC_THROUGHPUT_MBPS(total_bytes, elapsed_us);
 }

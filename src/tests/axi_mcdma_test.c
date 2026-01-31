@@ -47,7 +47,7 @@ int axi_mcdma_test_run_all(void)
         if (status == DMA_SUCCESS) {
             char size_str[32];
             results_logger_format_size(sizes[i], size_str, sizeof(size_str));
-            LOG_RESULT("  CH0, Size %s: %.2f MB/s\r\n", size_str, result.throughput_mbps);
+            LOG_RESULT("  CH0, Size %s: %lu MB/s\r\n", size_str, (unsigned long)result.throughput_mbps);
         }
     }
 
@@ -59,13 +59,13 @@ int axi_mcdma_test_run_all(void)
     LOG_RESULT("\r\n3. Scheduler Mode Tests:\r\n");
     memset(&result, 0, sizeof(result));
     status = axi_mcdma_test_round_robin(&result);
-    LOG_RESULT("  Round-Robin: %.2f MB/s aggregate\r\n",
-              status == DMA_SUCCESS ? result.throughput_mbps : 0.0);
+    LOG_RESULT("  Round-Robin: %lu MB/s aggregate\r\n",
+              (unsigned long)(status == DMA_SUCCESS ? result.throughput_mbps : 0));
 
     memset(&result, 0, sizeof(result));
     status = axi_mcdma_test_priority(&result);
-    LOG_RESULT("  Priority:    %.2f MB/s aggregate\r\n",
-              status == DMA_SUCCESS ? result.throughput_mbps : 0.0);
+    LOG_RESULT("  Priority:    %lu MB/s aggregate\r\n",
+              (unsigned long)(status == DMA_SUCCESS ? result.throughput_mbps : 0));
 
     LOG_RESULT("\r\nAXI MCDMA tests complete.\r\n");
     return DMA_SUCCESS;
@@ -137,7 +137,8 @@ int axi_mcdma_test_single_channel(uint32_t channel, uint32_t size, TestResult_t*
     result->total_bytes = (uint64_t)size * iterations;
     result->total_time_us = elapsed_us;
     result->throughput_mbps = CALC_THROUGHPUT_MBPS(result->total_bytes, elapsed_us);
-    result->latency_us = (double)elapsed_us / iterations;
+    result->latency_us = elapsed_us / iterations;
+    result->latency_ns = 0;
     result->data_integrity = integrity;
 
     return DMA_SUCCESS;
@@ -271,9 +272,9 @@ int axi_mcdma_test_scalability(void)
         status = axi_mcdma_test_multi_channel(num_ch, size, &result);
 
         if (status == DMA_SUCCESS) {
-            double per_channel = result.throughput_mbps / num_ch;
-            LOG_RESULT("  %9d | %17.2f | %10.2f\r\n",
-                      num_ch, result.throughput_mbps, per_channel);
+            uint32_t per_channel = result.throughput_mbps / num_ch;
+            LOG_RESULT("  %9d | %17lu | %10lu\r\n",
+                      num_ch, (unsigned long)result.throughput_mbps, (unsigned long)per_channel);
         } else {
             LOG_RESULT("  %9d | %17s | %10s\r\n", num_ch, "ERROR", "---");
         }
