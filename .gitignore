@@ -19,3 +19,33 @@ Release/
 *.tmp
 *.bak
 *~
+
+# Vivado project directories (too large)
+vivado/versal_all_dma/
+vivado/versal_all_dma_v*/
+
+# Vivado backup/temp files
+*.backup.log
+*.backup.jou
+vivado.log
+vivado.jou
+.Xil/
+*.mem
+wdi_info.xml
+
+# Vivado export intermediates
+vivado/export/*.rcdo
+vivado/export/*.rnpi
+vivado/export/*_markers.*
+vivado/export/gen_files/
+vivado/export/static_files/
+
+# Vitis workspace (too large)
+vitis/workspace_*/
+vitis/*.log
+
+# Claude temp
+.claude/
+
+# Logs
+logs/

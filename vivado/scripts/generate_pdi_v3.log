@@ -1,0 +1,596 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Jan 31 16:39:07 2026
+# Process ID: 11336
+# Current directory: V:/scripts
+# Command line: vivado.exe -mode batch -source generate_pdi_v3.tcl -log generate_pdi_v3.log
+# Log file: V:/scripts/generate_pdi_v3.log
+# Journal file: V:/scripts\vivado.jou
+# Running On: DESKTOP-O3SNGUM, OS: Windows, CPU Frequency: 4000 MHz, CPU Physical cores: 12, Host memory: 17089 MB
+#-----------------------------------------------------------
+source generate_pdi_v3.tcl
+# set project_dir "V:/versal_all_dma_v3"
+# set export_dir "V:/export"
+# file mkdir $export_dir
+# open_checkpoint "$project_dir/versal_all_dma_v3.runs/impl_1/design_1_wrapper_routed.dcp"
+Command: open_checkpoint V:/versal_all_dma_v3/versal_all_dma_v3.runs/impl_1/design_1_wrapper_routed.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.042 . Memory (MB): peak = 387.633 ; gain = 6.727
+INFO: [Device 21-403] Loading part xcvp1202-vsva2785-2MP-e-S
+Netlist sorting complete. Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2415.242 ; gain = 13.699
+INFO: [Netlist 29-17] Analyzing 1560 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx_2023_2/Vivado/2023.2/data/ip'.
+INFO: [Project 1-479] Netlist was created with Vivado 2023.2
+INFO: [Constraints 18-6336] Loading Clock Expansion Window constraints config file for device xcvp1202.
+INFO: [Constraints 18-6359] No Clock Expansion Window constraints config file entry for device xcvp1202.  GCLK Deskew mode will be Off and cannot be enabled via GCLK_DESKEW override.
+INFO: [Constraints 18-5720] The default GCLK Deskew mode is Off.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST0/IO_VREF[0].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST0/IO_VREF[1].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST0/IO_VREF[4].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST0/IO_VREF[5].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST1/IO_VREF[0].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST1/IO_VREF[1].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST1/IO_VREF[2].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST1/IO_VREF[3].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST1/IO_VREF[4].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST1/IO_VREF[5].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST1/IO_VREF[6].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST1/IO_VREF[7].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST2/IO_VREF[4].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST2/IO_VREF[5].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST2/IO_VREF[6].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+WARNING: [Constraints 18-549] Could not create 'VOH' constraint because cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/BANK_WRAPPER_INST2/IO_VREF[7].I_VREF' is not directly connected to top level port. 'VOH' is ignored by Vivado but preserved inside the database.
+Resolution: It is recommended to apply the I/O constraint directly to the top level port instead of applying the constraint to the cell connected to the port.
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.302 . Memory (MB): peak = 3017.508 ; gain = 3.051
+Reading Traffic File 'V:/versal_all_dma_v3/versal_all_dma_v3.runs/impl_1/design_1_wrapper_routed/design_1_wrapper.nts'
+INFO: [Ipconfig 75-709] Read and Merge Traffic Stats:  Before Read: 0 insts (0 INI), 0 paths (0 INI). Read In: 10 insts (0 INI), 9 paths (0 INI). After Merge: 10 insts (0 INI), 9 paths (0 INI). Noc Frequency: 1000 0 error slaves
+Reading NOC Solution File 'V:/versal_all_dma_v3/versal_all_dma_v3.runs/impl_1/design_1_wrapper_routed/design_1_wrapper.ncr'
+INFO: [Constraints 18-5158] Loading Memory Image Database: V:/versal_all_dma_v3/versal_all_dma_v3.runs/impl_1/design_1_wrapper_routed/design_1_wrapper_mem_image.db
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.040 . Memory (MB): peak = 6333.539 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.263 . Memory (MB): peak = 6333.539 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 6333.539 ; gain = 0.000
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 6333.539 ; gain = 0.000
+Reading routing.
+INFO: [Device 21-8972] Using routethru equations.
+Read RouteStorage: Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 6333.539 ; gain = 0.000
+Read Physdb Files: Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 6333.539 ; gain = 0.000
+Restored from archive | CPU: 34.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 6333.539 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.033 . Memory (MB): peak = 6333.539 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1552 instances were transformed.
+  LUT6CY => LUT6CY (LUTCY1, LUTCY2): 1170 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 68 instances
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 4 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 302 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 4 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2023.2 (64-bit) build 4029153
+open_checkpoint: Time (s): cpu = 00:01:47 ; elapsed = 00:01:51 . Memory (MB): peak = 6333.539 ; gain = 5960.582
+# puts "Generating device image..."
+Generating device image...
+# write_device_image -force -file "$export_dir/design_all_dma_v3.pdi"
+Command: write_device_image -force -file V:/export/design_all_dma_v3.pdi
+Attempting to get a license for feature 'Implementation' and/or device 'xcvp1202'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvp1202'
+INFO: [Common 17-86] Your Implementation license expires in 15 day(s)
+INFO: [Common 17-1540] The version limit for your license is '2025.11' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for new releases.
+Running DRC as a precondition to command write_device_image
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+WARNING: [DRC AVALXA-267] CLK_DOM_COM_NC: Cell design_1_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-267] CLK_DOM_COM_NC: Cell design_1_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-267] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/GEN_SG_ENGINE.I_SG_ENGINE/I_SG_FETCH_QUEUE/GEN_MM2S_FTCH_Q_IF.FTCH_QUEUE_I/I_FTCH_BRAM/USE_XPM.xpm_memory_sdpram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-267] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/GEN_SG_ENGINE.I_SG_ENGINE/I_SG_FETCH_QUEUE/GEN_S2MM_FTCH_Q_IF.FTCH_QUEUE_I/I_FTCH_BRAM/USE_XPM.xpm_memory_sdpram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-267] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/INCLUDE_S2MM_SOF_EOF_GENERATOR.INCLUDE_BUF_FIFO.I_BUF_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-267] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-267] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-268] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_4: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/INCLUDE_S2MM_SOF_EOF_GENERATOR.INCLUDE_BUF_FIFO.I_BUF_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/INCLUDE_S2MM_SOF_EOF_GENERATOR.INCLUDE_BUF_FIFO.I_BUF_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axi_mcdma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_3: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_3: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-271] CLK_DOM_COM_NC: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_4: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_dma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_3: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_0: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_2: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_3: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC AVALXA-272] CLK_DOM_COM_WF: Cell design_1_i/axis_fifo_mcdma/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_4: When cell attribute CLOCK_DOMAINS=COMMON, if cell attribute WRITE_MODE_A and WRITE_MODE_B are not READ_FIRST, there may be address collision if the same address appears on both read and write ports resulting in unknown or corrupted data. It is suggested to confirm via unisim simulation with SIM_COLLISION_CHECK != NONE that an address collision never occurs and if so try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. If address collision can be avoided, it is strongly suggested to change this mode to NO_CHANGE for better power characteristics. See the FPGA Memory Resources User Guide for additional information.
+WARNING: [DRC REQPXA-43] RSTREG_REGCE_LAT_MODE_B_RAM36: Cell design_1_i/axi_mcdma_0/U0/INCLUDE_S2MM_SOF_EOF_GENERATOR.INCLUDE_BUF_FIFO.I_BUF_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute DOB_REG=0, the REGCEBL/U and RSTREGBL/U pins in the RAMB36E5_INT (equivalent to REGCEB and RSTREGB in RAMB36E5) should either not be connected to an active signal or connected to the VCC and GND respectively.
+WARNING: [DRC REQPXA-65] RSTREG_REGCE_LAT_MODE_A_RAM36: Cell design_1_i/axi_mcdma_0/U0/INCLUDE_S2MM_SOF_EOF_GENERATOR.INCLUDE_BUF_FIFO.I_BUF_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_bram_1: When cell attribute DOA_REG=0, the REGCEAREGCEL/U and RSTREGARSTREGL/U pins in the RAMB36E5_INT (equivalent to REGCEAREGCE and RSTREGARSTREG in RAMB36E5) should either not be connected to an active signal or connected to VCC and GND respectively.
+WARNING: [DRC RTSTAT-10] No routable loads: 22 net(s) have no routable loads. The problem bus(es) and/or net(s) are design_1_i/axi_smc_ctrl/inst/m00_nodes/m00_w_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m01_nodes/m01_r_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m00_nodes/m00_aw_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m02_nodes/m02_r_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/s00_nodes/s00_ar_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m02_nodes/m02_aw_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m01_nodes/m01_w_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m00_nodes/m00_r_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/s00_nodes/s00_r_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m01_nodes/m01_aw_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m01_nodes/m01_ar_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m02_nodes/m02_ar_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/s00_nodes/s00_w_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m02_nodes/m02_w_node/inst/mi_handler_m_sc_areset_pipe, design_1_i/axi_smc_ctrl/inst/m02_nodes/m02_b_node/inst/mi_handler_m_sc_areset_pipe... and (the first 15 of 22 listed).
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 39 Warnings
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+Integrating Hard IP ELF/MEM with the PDI.
+INFO: [Constraints 18-5160] Reading Static MEM File '_mem_tmp.mem' for cell 'design_1_i/axi_noc_0/inst/MC0_ddrc/inst/noc_ddr4_phy/inst/u_ddrmc_main'
+Generating PS PMC files.
+INFO: [Designutils 20-2272] Running write_bitstream with 2 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+INFO: [Bitstream 40-812] Reading NPI Startup sequence definitions
+INFO: [Bitstream 40-811] Reading NPI Shutdown sequence definitions
+INFO: [Bitstream 40-810] Reading NPI Preconfig sequence definitions
+Creating bitstream...
+Creating bitstream...
+INFO: [Bitstream 40-283] Bitstream size = 16898944 bits
+Writing CDO partition V:/export/design_all_dma_v3.rcdo...
+Writing NPI partition V:/export/design_all_dma_v3.rnpi...
+Generating bif file V:/export/design_all_dma_v3.bif for base design.
+Generating Hard Block Files
+INFO: [Hsi 55-2053] elapsed time for repository (C:/Xilinx_2023_2/Vivado/2023.2/data/embeddedsw) loading 0 seconds
+C:/Xilinx_2023_2/Vivado/2023.2/gnu/microblaze/nt
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_CSUDMA_CLK_FREQ_HZ' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_CSUDMA_CLK_FREQ_HZ' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DMATYPE' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DMATYPE' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_CSUDMA_CLK_FREQ_HZ' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_CSUDMA_CLK_FREQ_HZ' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_1000Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_100Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_10Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_1000Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_100Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_10Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_1000Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_100Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_ENET_SLCR_10Mbps_DIV1' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.NUM_INSTANCES' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_PIT1_EXPIRED_MASK' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_PIT2_EXPIRED_MASK' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_PIT3_EXPIRED_MASK' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_PIT4_EXPIRED_MASK' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.NUM_INSTANCES' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.' because this property is not valid in conjunction with other property setting on this object.
+WARNING: Pmonpsv driver is being deprecated from 2024.1 release. It will be made obsolete in 2025.1 release.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.QSPI_FBCLK' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.DEVICE_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.NAME' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_7' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_7_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_8' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_8_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_9' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_9_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_10' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_10_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_11' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_11_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_12' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_12_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_13' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_13_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_14' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_14_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_15' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_15_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_16' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_16_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_17' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_17_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_18' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_18_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_19' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_19_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_20' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_20_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_21' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_21_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_22' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_22_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_23' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_23_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_24' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_24_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_25' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_25_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_26' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_26_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_27' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_27_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_28' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_28_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_29' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_29_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_30' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_30_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_31' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_31_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_32' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_32_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_33' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_33_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_34' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_34_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_35' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_35_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_36' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_36_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_37' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_37_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_38' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_38_ROOT_ID' because this property is not valid in conjunction with other property setting on this object.
+WARNING: [Common 17-673] Cannot get value of property 'CONFIG.C_MEAS_39' because this property is not valid in conjunction with other property setting on this object.
+INFO: [Common 17-14] Message 'Common 17-673' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cframe_v1_5/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cfupmc_v1_6/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/coresightps_dcc_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cpu_v2_18/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/csudma_v1_14/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/ddrpsv_v1_5/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/emacps_v3_19/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/iomodule_v2_15/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/ipipsu_v2_14/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/pmonpsv_v2_3/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/qspipsu_v1_18/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/rtcpsu_v1_13/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/sdps_v4_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/standalone_v9_0/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/sysmonpsv_v4_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/trngpsv_v1_4/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/uartlite_v3_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/uartpsv_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilcert_v1_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilffs_v5_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilloader_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilnvm_v3_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilocp_v1_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpdi_v1_8/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilplmi_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpm_v5_1/src"
+"Include files for this library have already been copied."
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpuf_v2_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsecure_v5_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsem_v1_8/src"
+"Include files for this library have already been copied."
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/zdma_v1_17/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilcert_v1_1/src"
+"Compiling XilCert Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilloader_v1_9/src"
+"Compiling XilLoader Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilnvm_v3_2/src"
+"Compiling XilNvm Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilocp_v1_2/src"
+"Compiling XilOcp Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpdi_v1_8/src"
+"Compiling Xilpdi Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilplmi_v1_9/src"
+"Compiling XilPLMI Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpm_v5_1/src"
+"Compiling XilPM Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpuf_v2_2/src"
+"Compiling XilPuf Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsecure_v5_2/src"
+"Compiling XilSecure Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsem_v1_8/src"
+'Finished building libraries sequentially.'
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cframe_v1_5/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cfupmc_v1_6/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/coresightps_dcc_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cpu_v2_18/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/csudma_v1_14/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/ddrpsv_v1_5/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/emacps_v3_19/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/iomodule_v2_15/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/ipipsu_v2_14/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/pmonpsv_v2_3/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/qspipsu_v1_18/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/rtcpsu_v1_13/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/sdps_v4_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/standalone_v9_0/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/sysmonpsv_v4_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/trngpsv_v1_4/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/uartlite_v3_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/uartpsv_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilcert_v1_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilffs_v5_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilloader_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilnvm_v3_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilocp_v1_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpdi_v1_8/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilplmi_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpm_v5_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpuf_v2_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsecure_v5_2/src"
+"Include files for this library have already been copied."
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsem_v1_8/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/zdma_v1_17/src"
+"Include files for this library have already been copied."
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/cframe_v1_5/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/cfupmc_v1_6/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/coresightps_dcc_v1_9/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/cpu_v2_18/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/csudma_v1_14/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/ddrpsv_v1_5/src"
+xcoresightpsdcc.c:40:2: warning: #warning "The driver is supported only for ARM architecture" [-Wcpp]
+   40 | #warning "The driver is supported only for ARM architecture"
+      |  ^~~~~~~
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/emacps_v3_19/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/iomodule_v2_15/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/ipipsu_v2_14/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/pmonpsv_v2_3/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/qspipsu_v1_18/src"
+In file included from xiomodule_g.c:16:
+../../../include/xparameters.h:1234:60: warning: conversion from 'long long unsigned int' to 'unsigned int' changes value from '18446744073709551615' to '4294967295' [-Woverflow]
+ 1234 | #define XPAR_CIPS_0_PSPMC_0_PSV_PMC_IOMODULE_0_IO_BASEADDR 0xFFFFFFFFFFFFFFFFU
+      |                                                            ^~~~~~~~~~~~~~~~~~~
+xiomodule_g.c:30:17: note: in expansion of macro 'XPAR_CIPS_0_PSPMC_0_PSV_PMC_IOMODULE_0_IO_BASEADDR'
+   30 |                 XPAR_CIPS_0_PSPMC_0_PSV_PMC_IOMODULE_0_IO_BASEADDR,
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/rtcpsu_v1_13/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/sdps_v4_2/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/standalone_v9_0/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/sysmonpsv_v4_1/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/trngpsv_v1_4/src"
+"Compiling xsysmonpsv"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/uartlite_v3_9/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/uartpsv_v1_9/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilffs_v5_1/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/zdma_v1_17/src"
+microblaze_sleep.c:82:9: note: '#pragma message: For the sleep routines, assembly instructions are used'
+   82 | #pragma message ("For the sleep routines, assembly instructions are used")
+      |         ^~~~~~~
+"DEBUG NON_LTO_OBJECTS is ../../../lib/microblaze_interrupt_handler.o"
+'Finished building libraries parallelly.'
+c:\xilinx_2023_2\vivado\2023.2\gnu\microblaze\nt\x86_64-oesdk-mingw32\usr\bin\microblaze-xilinx-elf\../../libexec/microblaze-xilinx-elf/gcc/microblaze-xilinx-elf/12.2.0/ar.exe: creating cips_0_pspmc_0_psv_pmc_0/lib/libxil.a
+'Finished building libraries'
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_proc.c -o xplm_proc.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_plat.c -o xplm_plat.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_hooks.c -o xplm_hooks.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_main.c -o xplm_main.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_pm.c -o xplm_pm.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_sem_init.c -o xplm_sem_init.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_module.c -o xplm_module.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_loader.c -o xplm_loader.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_stl.c -o xplm_stl.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_startup.c -o xplm_startup.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc -o executable.elf xplm_hooks.o xplm_loader.o xplm_main.o xplm_module.o xplm_plat.o xplm_pm.o xplm_proc.o xplm_sem_init.o xplm_startup.o xplm_stl.o -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilffs,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilpdi,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilplmi,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilloader,-lxilpm,-lxilplmi,-lxilffs,-lxilpdi,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilpm,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilocp,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilcert,-lxilplmi,-lxilsecure,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilsecure,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilsem,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilpuf,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilnvm,-lxil,-lgcc,-lc,--end-group                                                                                                                   -Wl,--no-relax  -Wl,--gc-sections -Lversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/lib -Tlscript.ld
+lto-wrapper.exe: warning: using serial compilation of 6 LTRANS jobs
+lto-wrapper.exe: note: see the '-flto' option documentation for more information
+INFO: [Project 1-1179] Generating V:/export/design_all_dma_v3.bif file ...
+Running bootgen.
+Found bootgen at C:/Xilinx_2023_2/Vivado/2023.2/bin/bootgen
+Running 'C:/Xilinx_2023_2/Vivado/2023.2/bin/bootgen -arch versal -image V:/export/design_all_dma_v3.bif -w -o V:/export/design_all_dma_v3.pdi'
+
+
+****** Bootgen v2023.2
+  **** Build date : Oct 11 2023-12:51:58
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+[INFO]   : Bootimage generated successfully
+
+Bootgen Completed Successfully.
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Common 17-83] Releasing license: Implementation
+18 Infos, 139 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_device_image completed successfully
+write_device_image: Time (s): cpu = 00:03:17 ; elapsed = 00:03:26 . Memory (MB): peak = 8728.430 ; gain = 2394.891
+# puts "Generating XSA..."
+Generating XSA...
+# write_hw_platform -fixed -include_bit -force -file "$export_dir/design_all_dma_v3.xsa"
+INFO: [Project 1-1929] For a Versal design the -include_bit is not required. The generated platform will always contain either a pre-synthesis or post implementation .pdi file.
+INFO: [Project 1-1918] Creating Hardware Platform: V:/export/design_all_dma_v3.xsa ...
+INFO: [Project 1-1932] Generating a pre-synthesis device image (.pdi file) and writing it to the platform file V:/export/design_all_dma_v3.xsa.
+Generating Hard Block Files
+C:/Xilinx_2023_2/Vivado/2023.2/gnu/microblaze/nt
+WARNING: Pmonpsv driver is being deprecated from 2024.1 release. It will be made obsolete in 2025.1 release.
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cframe_v1_5/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cfupmc_v1_6/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/coresightps_dcc_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cpu_v2_18/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/csudma_v1_14/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/ddrpsv_v1_5/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/emacps_v3_19/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/iomodule_v2_15/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/ipipsu_v2_14/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/pmonpsv_v2_3/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/qspipsu_v1_18/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/rtcpsu_v1_13/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/sdps_v4_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/standalone_v9_0/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/sysmonpsv_v4_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/trngpsv_v1_4/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/uartlite_v3_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/uartpsv_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilcert_v1_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilffs_v5_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilloader_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilnvm_v3_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilocp_v1_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpdi_v1_8/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilplmi_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpm_v5_1/src"
+"Include files for this library have already been copied."
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpuf_v2_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsecure_v5_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsem_v1_8/src"
+"Include files for this library have already been copied."
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/zdma_v1_17/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilcert_v1_1/src"
+"Compiling XilCert Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilloader_v1_9/src"
+"Compiling XilLoader Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilnvm_v3_2/src"
+"Compiling XilNvm Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilocp_v1_2/src"
+"Compiling XilOcp Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpdi_v1_8/src"
+"Compiling Xilpdi Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilplmi_v1_9/src"
+"Compiling XilPLMI Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpm_v5_1/src"
+"Compiling XilPM Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpuf_v2_2/src"
+"Compiling XilPuf Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsecure_v5_2/src"
+"Compiling XilSecure Library"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsem_v1_8/src"
+'Finished building libraries sequentially.'
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cframe_v1_5/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cfupmc_v1_6/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/coresightps_dcc_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/cpu_v2_18/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/csudma_v1_14/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/ddrpsv_v1_5/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/emacps_v3_19/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/iomodule_v2_15/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/ipipsu_v2_14/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/pmonpsv_v2_3/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/qspipsu_v1_18/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/rtcpsu_v1_13/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/sdps_v4_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/standalone_v9_0/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/sysmonpsv_v4_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/trngpsv_v1_4/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/uartlite_v3_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/uartpsv_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilcert_v1_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilffs_v5_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilloader_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilnvm_v3_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilocp_v1_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpdi_v1_8/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilplmi_v1_9/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpm_v5_1/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilpuf_v2_2/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsecure_v5_2/src"
+"Include files for this library have already been copied."
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/xilsem_v1_8/src"
+"Running Make include in cips_0_pspmc_0_psv_pmc_0/libsrc/zdma_v1_17/src"
+"Include files for this library have already been copied."
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/cframe_v1_5/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/cfupmc_v1_6/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/coresightps_dcc_v1_9/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/cpu_v2_18/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/csudma_v1_14/src"
+xcoresightpsdcc.c:40:2: warning: #warning "The driver is supported only for ARM architecture" [-Wcpp]
+   40 | #warning "The driver is supported only for ARM architecture"
+      |  ^~~~~~~
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/ddrpsv_v1_5/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/emacps_v3_19/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/iomodule_v2_15/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/ipipsu_v2_14/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/pmonpsv_v2_3/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/qspipsu_v1_18/src"
+In file included from xiomodule_g.c:16:
+../../../include/xparameters.h:1234:60: warning: conversion from 'long long unsigned int' to 'unsigned int' changes value from '18446744073709551615' to '4294967295' [-Woverflow]
+ 1234 | #define XPAR_CIPS_0_PSPMC_0_PSV_PMC_IOMODULE_0_IO_BASEADDR 0xFFFFFFFFFFFFFFFFU
+      |                                                            ^~~~~~~~~~~~~~~~~~~
+xiomodule_g.c:30:17: note: in expansion of macro 'XPAR_CIPS_0_PSPMC_0_PSV_PMC_IOMODULE_0_IO_BASEADDR'
+   30 |                 XPAR_CIPS_0_PSPMC_0_PSV_PMC_IOMODULE_0_IO_BASEADDR,
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/rtcpsu_v1_13/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/sdps_v4_2/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/standalone_v9_0/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/sysmonpsv_v4_1/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/trngpsv_v1_4/src"
+"Compiling xsysmonpsv"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/uartlite_v3_9/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/uartpsv_v1_9/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/xilffs_v5_1/src"
+"Running Make libs in cips_0_pspmc_0_psv_pmc_0/libsrc/zdma_v1_17/src"
+microblaze_sleep.c:82:9: note: '#pragma message: For the sleep routines, assembly instructions are used'
+   82 | #pragma message ("For the sleep routines, assembly instructions are used")
+      |         ^~~~~~~
+"DEBUG NON_LTO_OBJECTS is ../../../lib/microblaze_interrupt_handler.o"
+'Finished building libraries parallelly.'
+c:\xilinx_2023_2\vivado\2023.2\gnu\microblaze\nt\x86_64-oesdk-mingw32\usr\bin\microblaze-xilinx-elf\../../libexec/microblaze-xilinx-elf/gcc/microblaze-xilinx-elf/12.2.0/ar.exe: creating cips_0_pspmc_0_psv_pmc_0/lib/libxil.a
+'Finished building libraries'
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_proc.c -o xplm_proc.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_plat.c -o xplm_plat.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_hooks.c -o xplm_hooks.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_main.c -o xplm_main.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_pm.c -o xplm_pm.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_sem_init.c -o xplm_sem_init.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_module.c -o xplm_module.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_loader.c -o xplm_loader.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_stl.c -o xplm_stl.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc  -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects  -c xplm_startup.c -o xplm_startup.o -Iversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/include -I.
+mb-gcc -o executable.elf xplm_hooks.o xplm_loader.o xplm_main.o xplm_module.o xplm_plat.o xplm_pm.o xplm_proc.o xplm_sem_init.o xplm_startup.o xplm_stl.o -MMD -MP               -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Os -flto -ffat-lto-objects   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilffs,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilpdi,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilplmi,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilloader,-lxilpm,-lxilplmi,-lxilffs,-lxilpdi,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilpm,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilocp,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilcert,-lxilplmi,-lxilsecure,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilsecure,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilsem,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilpuf,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilnvm,-lxil,-lgcc,-lc,--end-group                                                                                                                   -Wl,--no-relax  -Wl,--gc-sections -Lversal_plm_bsp/cips_0_pspmc_0_psv_pmc_0/lib -Tlscript.ld
+lto-wrapper.exe: warning: using serial compilation of 6 LTRANS jobs
+lto-wrapper.exe: note: see the '-flto' option documentation for more information
+INFO: [Project 1-1179] Generating V:/scripts/.Xil/Vivado-11336-DESKTOP-O3SNGUM/xsa/design_all_dma_v3_presynth.bif file ...
+
+
+****** Bootgen v2023.2
+  **** Build date : Oct 11 2023-12:51:58
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+[INFO]   : Bootimage generated successfully
+
+INFO: [Project 1-1943] The Hardware Platform can be used for Hardware
+INFO: [Project 1-1941] Successfully created Hardware Platform: V:/export/design_all_dma_v3.xsa
+write_hw_platform: Time (s): cpu = 00:00:21 ; elapsed = 00:01:02 . Memory (MB): peak = 8728.430 ; gain = 0.000
+# puts "Done!"
+Done!
+# puts "PDI: $export_dir/design_all_dma_v3.pdi"
+PDI: V:/export/design_all_dma_v3.pdi
+# puts "XSA: $export_dir/design_all_dma_v3.xsa"
+XSA: V:/export/design_all_dma_v3.xsa
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 31 16:45:29 2026...

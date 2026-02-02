@@ -1,0 +1,319 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Jan 31 15:28:48 2026
+# Process ID: 17920
+# Current directory: C:/Users/mpcukur/claude_code_ws/versal_dma/vivado/scripts
+# Command line: vivado.exe -mode batch -source build_all_dma_v2.tcl -log build_v2.log -journal build_v2.jou
+# Log file: C:/Users/mpcukur/claude_code_ws/versal_dma/vivado/scripts/build_v2.log
+# Journal file: C:/Users/mpcukur/claude_code_ws/versal_dma/vivado/scripts\build_v2.jou
+# Running On: DESKTOP-O3SNGUM, OS: Windows, CPU Frequency: 4000 MHz, CPU Physical cores: 12, Host memory: 17089 MB
+#-----------------------------------------------------------
+source build_all_dma_v2.tcl
+# set script_dir [file dirname [file normalize [info script]]]
+# set project_dir [file normalize "$script_dir/.."]
+# set project_name "versal_all_dma_v2"
+# puts "============================================================"
+============================================================
+# puts "  Versal DMA Benchmark - All DMA Types (v2)"
+  Versal DMA Benchmark - All DMA Types (v2)
+# puts "  VPK120 + LPDDR4"
+  VPK120 + LPDDR4
+# puts "  Fixes: LPD DMA NoC path, AXI CDMA config, AXI DMA 26-bit length"
+  Fixes: LPD DMA NoC path, AXI CDMA config, AXI DMA 26-bit length
+# puts "============================================================"
+============================================================
+# catch {close_project}
+# if {[file exists "$project_dir/$project_name"]} {
+#     file delete -force "$project_dir/$project_name"
+# }
+# create_project $project_name "$project_dir/$project_name" -part xcvp1202-vsva2785-2MP-e-S
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 555.113 ; gain = 180.520
+# set_property board_part xilinx.com:vpk120:part0:1.2 [current_project]
+# create_bd_design "design_1"
+Wrote  : <C:\Users\mpcukur\claude_code_ws\versal_dma\vivado\versal_all_dma_v2\versal_all_dma_v2.srcs\sources_1\bd\design_1\design_1.bd> 
+# puts "Adding CIPS with LPD DMA and LPD AXI master..."
+Adding CIPS with LPD DMA and LPD AXI master...
+# create_bd_cell -type ip -vlnv xilinx.com:ip:versal_cips:* cips_0
+create_bd_cell: Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1070.395 ; gain = 441.398
+# apply_bd_automation -rule xilinx.com:bd_rule:cips -config { \
+#     board_preset {Yes} \
+#     boot_config {Custom} \
+#     configure_noc {Add new AXI NoC} \
+#     debug_config {JTAG} \
+#     design_flow {Full System} \
+#     mc_type {LPDDR} \
+#     num_mc_ddr {None} \
+#     num_mc_lpddr {1} \
+#     pl_clocks {1} \
+#     pl_resets {1} \
+# } [get_bd_cells cips_0]
+INFO: [Device 21-403] Loading part xcvp1202-vsva2785-2MP-e-S
+create_bd_cell: Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 2742.562 ; gain = 1646.457
+apply_bd_automation: Time (s): cpu = 00:00:30 ; elapsed = 00:00:48 . Memory (MB): peak = 2753.312 ; gain = 1682.918
+# set_property -dict [list \
+#     CONFIG.PS_PMC_CONFIG { \
+#         PS_USE_M_AXI_FPD {1} \
+#         PS_USE_M_AXI_LPD {1} \
+#         PS_NUM_F2P_IRQ {4} \
+#         PS_IRQ_USAGE {{CH0 1} {CH1 1} {CH2 1} {CH3 1} {CH4 0} {CH5 0} {CH6 0} {CH7 0} {CH8 0} {CH9 0} {CH10 0} {CH11 0} {CH12 0} {CH13 0} {CH14 0} {CH15 0}} \
+#         PS_USE_PMCPL_CLK0 {1} \
+#         SMON_ALARMS {Set SMON ALARMS Group Coverage} \
+#         PS_LPDMA_CH_TZ {{NONSECURE 1} {NONSECURE 1} {NONSECURE 1} {NONSECURE 1} {NONSECURE 1} {NONSECURE 1} {NONSECURE 1} {NONSECURE 1}} \
+#     } \
+# ] [get_bd_cells cips_0]
+WARNING: [IP_Flow 19-7090] Invalid parameter 'PS_LPDMA_CH_TZ' provided, Ignoring
+WARNING: [IP_Flow 19-7090] Invalid parameter 'PS_NUM_F2P_IRQ' provided, Ignoring
+# puts "CIPS configured with LPD DMA and M_AXI_LPD enabled"
+CIPS configured with LPD DMA and M_AXI_LPD enabled
+# set noc_cell [get_bd_cells -filter {VLNV =~ *axi_noc*}]
+# puts "NoC cell: $noc_cell"
+NoC cell: /axi_noc_0
+# set current_si [get_property CONFIG.NUM_SI [get_bd_cells $noc_cell]]
+# puts "Current NoC SI count: $current_si"
+Current NoC SI count: 6
+# set new_si [expr $current_si + 4]
+# set_property CONFIG.NUM_SI $new_si [get_bd_cells $noc_cell]
+# set current_clks [get_property CONFIG.NUM_CLKS [get_bd_cells $noc_cell]]
+# set new_clks [expr $current_clks + 2]
+# set_property CONFIG.NUM_CLKS $new_clks [get_bd_cells $noc_cell]
+# set si_cdma "S[format %02d $current_si]_AXI"
+# set si_dma "S[format %02d [expr $current_si + 1]]_AXI"
+# set si_mcdma "S[format %02d [expr $current_si + 2]]_AXI"
+# set si_lpd "S[format %02d [expr $current_si + 3]]_AXI"
+# set pl_clk_name "aclk[expr $current_clks]"
+# set lpd_clk_name "aclk[expr $current_clks + 1]"
+# puts "CDMA interface: $si_cdma"
+CDMA interface: S06_AXI
+# puts "DMA interface: $si_dma"
+DMA interface: S07_AXI
+# puts "MCDMA interface: $si_mcdma"
+MCDMA interface: S08_AXI
+# puts "LPD interface: $si_lpd"
+LPD interface: S09_AXI
+# puts "PL clock: $pl_clk_name"
+PL clock: aclk6
+# puts "LPD clock: $lpd_clk_name"
+LPD clock: aclk7
+# set_property -dict [list \
+#     CONFIG.CONNECTIONS {MC_0 {read_bw {5000} write_bw {5000} read_avg_burst {4} write_avg_burst {4}}} \
+#     CONFIG.CATEGORY {pl} \
+# ] [get_bd_intf_pins $noc_cell/$si_cdma]
+# set_property -dict [list \
+#     CONFIG.CONNECTIONS {MC_0 {read_bw {5000} write_bw {5000} read_avg_burst {4} write_avg_burst {4}}} \
+#     CONFIG.CATEGORY {pl} \
+# ] [get_bd_intf_pins $noc_cell/$si_dma]
+# set_property -dict [list \
+#     CONFIG.CONNECTIONS {MC_0 {read_bw {5000} write_bw {5000} read_avg_burst {4} write_avg_burst {4}}} \
+#     CONFIG.CATEGORY {pl} \
+# ] [get_bd_intf_pins $noc_cell/$si_mcdma]
+# set_property -dict [list \
+#     CONFIG.CONNECTIONS {MC_0 {read_bw {5000} write_bw {5000} read_avg_burst {4} write_avg_burst {4}}} \
+#     CONFIG.CATEGORY {ps_rpu} \
+# ] [get_bd_intf_pins $noc_cell/$si_lpd]
+# set_property -dict [list CONFIG.ASSOCIATED_BUSIF "$si_cdma:$si_dma:$si_mcdma"] [get_bd_pins $noc_cell/$pl_clk_name]
+# set_property -dict [list CONFIG.ASSOCIATED_BUSIF "$si_lpd"] [get_bd_pins $noc_cell/$lpd_clk_name]
+# puts "Adding AXI CDMA..."
+Adding AXI CDMA...
+# create_bd_cell -type ip -vlnv xilinx.com:ip:axi_cdma:* axi_cdma_0
+# set_property -dict [list \
+#     CONFIG.C_INCLUDE_SG {1} \
+#     CONFIG.C_M_AXI_DATA_WIDTH {128} \
+#     CONFIG.C_M_AXI_MAX_BURST_LEN {64} \
+#     CONFIG.C_ADDR_WIDTH {64} \
+# ] [get_bd_cells axi_cdma_0]
+# puts "Adding AXI DMA with 26-bit buffer length..."
+Adding AXI DMA with 26-bit buffer length...
+# create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:* axi_dma_0
+# set_property -dict [list \
+#     CONFIG.c_include_sg {1} \
+#     CONFIG.c_sg_include_stscntrl_strm {0} \
+#     CONFIG.c_m_axi_mm2s_data_width {128} \
+#     CONFIG.c_m_axis_mm2s_tdata_width {128} \
+#     CONFIG.c_mm2s_burst_size {64} \
+#     CONFIG.c_m_axi_s2mm_data_width {128} \
+#     CONFIG.c_s_axis_s2mm_tdata_width {128} \
+#     CONFIG.c_s2mm_burst_size {64} \
+#     CONFIG.c_addr_width {64} \
+#     CONFIG.c_sg_length_width {26} \
+# ] [get_bd_cells axi_dma_0]
+# create_bd_cell -type ip -vlnv xilinx.com:ip:axis_data_fifo:* axis_fifo_dma
+# set_property -dict [list \
+#     CONFIG.FIFO_DEPTH {1024} \
+#     CONFIG.HAS_TKEEP {1} \
+#     CONFIG.HAS_TLAST {1} \
+#     CONFIG.TDATA_NUM_BYTES {16} \
+# ] [get_bd_cells axis_fifo_dma]
+# puts "Adding AXI MCDMA..."
+Adding AXI MCDMA...
+# create_bd_cell -type ip -vlnv xilinx.com:ip:axi_mcdma:* axi_mcdma_0
+# set_property -dict [list \
+#     CONFIG.c_include_sg {1} \
+#     CONFIG.c_num_mm2s_channels {4} \
+#     CONFIG.c_num_s2mm_channels {4} \
+#     CONFIG.c_m_axi_mm2s_data_width {128} \
+#     CONFIG.c_m_axi_s2mm_data_width {128} \
+#     CONFIG.c_m_axis_mm2s_tdata_width {128} \
+#     CONFIG.c_s_axis_s2mm_tdata_width {128} \
+#     CONFIG.c_addr_width {64} \
+# ] [get_bd_cells axi_mcdma_0]
+CRITICAL WARNING: [BD 41-737] Cannot set the parameter c_s_axis_s2mm_tdata_width on /axi_mcdma_0. It is read-only.
+# create_bd_cell -type ip -vlnv xilinx.com:ip:axis_data_fifo:* axis_fifo_mcdma
+# set_property -dict [list \
+#     CONFIG.FIFO_DEPTH {1024} \
+#     CONFIG.HAS_TKEEP {1} \
+#     CONFIG.HAS_TLAST {1} \
+#     CONFIG.TDATA_NUM_BYTES {16} \
+# ] [get_bd_cells axis_fifo_mcdma]
+# puts "Adding SmartConnects..."
+Adding SmartConnects...
+# create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:* axi_smc_ctrl
+# set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {3}] [get_bd_cells axi_smc_ctrl]
+# create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:* axi_smc_cdma
+# set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {1}] [get_bd_cells axi_smc_cdma]
+# create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:* axi_smc_dma
+# set_property -dict [list CONFIG.NUM_SI {3} CONFIG.NUM_MI {1}] [get_bd_cells axi_smc_dma]
+# create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:* axi_smc_mcdma
+# set_property -dict [list CONFIG.NUM_SI {3} CONFIG.NUM_MI {1}] [get_bd_cells axi_smc_mcdma]
+# create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:* axi_smc_lpd
+# set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {1}] [get_bd_cells axi_smc_lpd]
+# create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:* rst_pl
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+# create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:* xlconcat_0
+# set_property CONFIG.NUM_PORTS {4} [get_bd_cells xlconcat_0]
+# puts "Making connections..."
+Making connections...
+# set pl_clk [get_bd_pins cips_0/pl0_ref_clk]
+# set pl_rst [get_bd_pins cips_0/pl0_resetn]
+# connect_bd_net $pl_clk [get_bd_pins rst_pl/slowest_sync_clk]
+# connect_bd_net $pl_rst [get_bd_pins rst_pl/ext_reset_in]
+# set aresetn [get_bd_pins rst_pl/peripheral_aresetn]
+# connect_bd_net $pl_clk [get_bd_pins $noc_cell/$pl_clk_name]
+# connect_bd_net $pl_clk [get_bd_pins $noc_cell/$lpd_clk_name]
+# connect_bd_net $pl_clk [get_bd_pins cips_0/m_axi_fpd_aclk]
+# connect_bd_net $pl_clk [get_bd_pins cips_0/m_axi_lpd_aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_smc_ctrl/aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_smc_cdma/aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_smc_dma/aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_smc_mcdma/aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_smc_lpd/aclk]
+# connect_bd_net $aresetn [get_bd_pins axi_smc_ctrl/aresetn]
+# connect_bd_net $aresetn [get_bd_pins axi_smc_cdma/aresetn]
+# connect_bd_net $aresetn [get_bd_pins axi_smc_dma/aresetn]
+# connect_bd_net $aresetn [get_bd_pins axi_smc_mcdma/aresetn]
+# connect_bd_net $aresetn [get_bd_pins axi_smc_lpd/aresetn]
+# connect_bd_intf_net [get_bd_intf_pins cips_0/M_AXI_LPD] [get_bd_intf_pins axi_smc_lpd/S00_AXI]
+# connect_bd_intf_net [get_bd_intf_pins axi_smc_lpd/M00_AXI] [get_bd_intf_pins $noc_cell/$si_lpd]
+# connect_bd_net $pl_clk [get_bd_pins axi_cdma_0/m_axi_aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_cdma_0/s_axi_lite_aclk]
+# connect_bd_net $aresetn [get_bd_pins axi_cdma_0/s_axi_lite_aresetn]
+# connect_bd_intf_net [get_bd_intf_pins axi_smc_ctrl/M00_AXI] [get_bd_intf_pins axi_cdma_0/S_AXI_LITE]
+# connect_bd_intf_net [get_bd_intf_pins axi_cdma_0/M_AXI] [get_bd_intf_pins axi_smc_cdma/S00_AXI]
+# connect_bd_intf_net [get_bd_intf_pins axi_smc_cdma/M00_AXI] [get_bd_intf_pins $noc_cell/$si_cdma]
+# connect_bd_net $pl_clk [get_bd_pins axi_dma_0/s_axi_lite_aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_dma_0/m_axi_mm2s_aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_dma_0/m_axi_s2mm_aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_dma_0/m_axi_sg_aclk]
+# connect_bd_net $aresetn [get_bd_pins axi_dma_0/axi_resetn]
+# connect_bd_net $pl_clk [get_bd_pins axis_fifo_dma/s_axis_aclk]
+# connect_bd_net $aresetn [get_bd_pins axis_fifo_dma/s_axis_aresetn]
+# connect_bd_intf_net [get_bd_intf_pins axi_smc_ctrl/M01_AXI] [get_bd_intf_pins axi_dma_0/S_AXI_LITE]
+# connect_bd_intf_net [get_bd_intf_pins axi_dma_0/M_AXI_MM2S] [get_bd_intf_pins axi_smc_dma/S00_AXI]
+# connect_bd_intf_net [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] [get_bd_intf_pins axi_smc_dma/S01_AXI]
+# connect_bd_intf_net [get_bd_intf_pins axi_dma_0/M_AXI_SG] [get_bd_intf_pins axi_smc_dma/S02_AXI]
+# connect_bd_intf_net [get_bd_intf_pins axi_smc_dma/M00_AXI] [get_bd_intf_pins $noc_cell/$si_dma]
+# connect_bd_intf_net [get_bd_intf_pins axi_dma_0/M_AXIS_MM2S] [get_bd_intf_pins axis_fifo_dma/S_AXIS]
+# connect_bd_intf_net [get_bd_intf_pins axis_fifo_dma/M_AXIS] [get_bd_intf_pins axi_dma_0/S_AXIS_S2MM]
+# connect_bd_net $pl_clk [get_bd_pins axi_mcdma_0/s_axi_aclk]
+# connect_bd_net $pl_clk [get_bd_pins axi_mcdma_0/s_axi_lite_aclk]
+# connect_bd_net $aresetn [get_bd_pins axi_mcdma_0/axi_resetn]
+# connect_bd_net $pl_clk [get_bd_pins axis_fifo_mcdma/s_axis_aclk]
+# connect_bd_net $aresetn [get_bd_pins axis_fifo_mcdma/s_axis_aresetn]
+# connect_bd_intf_net [get_bd_intf_pins axi_smc_ctrl/M02_AXI] [get_bd_intf_pins axi_mcdma_0/S_AXI_LITE]
+# connect_bd_intf_net [get_bd_intf_pins axi_mcdma_0/M_AXI_MM2S] [get_bd_intf_pins axi_smc_mcdma/S00_AXI]
+# connect_bd_intf_net [get_bd_intf_pins axi_mcdma_0/M_AXI_S2MM] [get_bd_intf_pins axi_smc_mcdma/S01_AXI]
+# connect_bd_intf_net [get_bd_intf_pins axi_mcdma_0/M_AXI_SG] [get_bd_intf_pins axi_smc_mcdma/S02_AXI]
+# connect_bd_intf_net [get_bd_intf_pins axi_smc_mcdma/M00_AXI] [get_bd_intf_pins $noc_cell/$si_mcdma]
+# connect_bd_intf_net [get_bd_intf_pins axi_mcdma_0/M_AXIS_MM2S] [get_bd_intf_pins axis_fifo_mcdma/S_AXIS]
+# connect_bd_intf_net [get_bd_intf_pins axis_fifo_mcdma/M_AXIS] [get_bd_intf_pins axi_mcdma_0/S_AXIS_S2MM]
+# connect_bd_intf_net [get_bd_intf_pins cips_0/M_AXI_FPD] [get_bd_intf_pins axi_smc_ctrl/S00_AXI]
+# connect_bd_net [get_bd_pins axi_cdma_0/cdma_introut] [get_bd_pins xlconcat_0/In0]
+# connect_bd_net [get_bd_pins axi_dma_0/mm2s_introut] [get_bd_pins xlconcat_0/In1]
+# connect_bd_net [get_bd_pins axi_dma_0/s2mm_introut] [get_bd_pins xlconcat_0/In2]
+# connect_bd_net [get_bd_pins axi_mcdma_0/mm2s_ch1_introut] [get_bd_pins xlconcat_0/In3]
+# connect_bd_net [get_bd_pins xlconcat_0/dout] [get_bd_pins cips_0/pl_ps_irq0]
+# puts "Connections complete"
+Connections complete
+# regenerate_bd_layout
+# assign_bd_address
+WARNING: [BD 41-1743] Cannot assign slave segment '/axi_noc_0/S09_AXI/C0_DDR_LOW1' into address space '/cips_0/M_AXI_LPD' because no valid addressing path exists. The addressing path from slave segment '/axi_noc_0/S09_AXI/C0_DDR_LOW1' to address space '/cips_0/M_AXI_LPD' terminates at master interface '/cips_0/M_AXI_LPD'. The apertures for this interface {<0x8000_0000 [ 512M ]>} do not intersect with previous path apertures {<0x8_0000_0000 [ 32G ]>}. This assignment will be automatically excluded.
+WARNING: [BD 41-1743] Cannot assign slave segment '/axi_noc_0/S09_AXI/C0_DDR_LOW0' into address space '/cips_0/M_AXI_LPD' because no valid addressing path exists. The addressing path from slave segment '/axi_noc_0/S09_AXI/C0_DDR_LOW0' to address space '/cips_0/M_AXI_LPD' terminates at master interface '/cips_0/M_AXI_LPD'. The apertures for this interface {<0x8000_0000 [ 512M ]>} do not intersect with previous path apertures {<0x0000_0000 [ 2G ]>}. This assignment will be automatically excluded.
+Slave segment '/axi_cdma_0/S_AXI_LITE/Reg' is being assigned into address space '/cips_0/M_AXI_FPD' at <0xA402_0000 [ 64K ]>.
+Slave segment '/axi_dma_0/S_AXI_LITE/Reg' is being assigned into address space '/cips_0/M_AXI_FPD' at <0xA400_0000 [ 64K ]>.
+Slave segment '/axi_mcdma_0/S_AXI_LITE/Reg' is being assigned into address space '/cips_0/M_AXI_FPD' at <0xA401_0000 [ 64K ]>.
+Slave segment '/axi_noc_0/S06_AXI/C0_DDR_LOW0' is being assigned into address space '/axi_cdma_0/Data' at <0x0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S07_AXI/C0_DDR_LOW0' is being assigned into address space '/axi_dma_0/Data_MM2S' at <0x0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S07_AXI/C0_DDR_LOW0' is being assigned into address space '/axi_dma_0/Data_S2MM' at <0x0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S07_AXI/C0_DDR_LOW0' is being assigned into address space '/axi_dma_0/Data_SG' at <0x0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S08_AXI/C0_DDR_LOW0' is being assigned into address space '/axi_mcdma_0/Data_MM2S' at <0x0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S08_AXI/C0_DDR_LOW0' is being assigned into address space '/axi_mcdma_0/Data_S2MM' at <0x0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S08_AXI/C0_DDR_LOW0' is being assigned into address space '/axi_mcdma_0/Data_SG' at <0x0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S06_AXI/C0_DDR_LOW1' is being assigned into address space '/axi_cdma_0/Data' at <0x8_0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S07_AXI/C0_DDR_LOW1' is being assigned into address space '/axi_dma_0/Data_MM2S' at <0x8_0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S07_AXI/C0_DDR_LOW1' is being assigned into address space '/axi_dma_0/Data_S2MM' at <0x8_0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S07_AXI/C0_DDR_LOW1' is being assigned into address space '/axi_dma_0/Data_SG' at <0x8_0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S08_AXI/C0_DDR_LOW1' is being assigned into address space '/axi_mcdma_0/Data_MM2S' at <0x8_0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S08_AXI/C0_DDR_LOW1' is being assigned into address space '/axi_mcdma_0/Data_S2MM' at <0x8_0000_0000 [ 2G ]>.
+Slave segment '/axi_noc_0/S08_AXI/C0_DDR_LOW1' is being assigned into address space '/axi_mcdma_0/Data_SG' at <0x8_0000_0000 [ 2G ]>.
+Excluding slave segment /axi_noc_0/S09_AXI/C0_DDR_LOW1 from address space /cips_0/M_AXI_LPD.
+Excluding slave segment /axi_noc_0/S09_AXI/C0_DDR_LOW0 from address space /cips_0/M_AXI_LPD.
+# save_bd_design
+Wrote  : <C:\Users\mpcukur\claude_code_ws\versal_dma\vivado\versal_all_dma_v2\versal_all_dma_v2.srcs\sources_1\bd\design_1\design_1.bd> 
+# puts "Validating..."
+Validating...
+# validate_bd_design
+WARNING: [BD 41-2670] Found an incomplete address path from address space '/axi_cdma_0/Data_SG' to master interface '/axi_cdma_0/M_AXI_SG'. Please either complete or remove this path to resolve.
+CRITICAL WARNING: [BD 41-1630] All slave segments accessible to address space </cips_0/M_AXI_LPD> are excluded.
+WARNING: [BD 41-1629] Slave segment </axi_noc_0/S09_AXI/C0_DDR_LOW1> is excluded from all addressing paths.
+WARNING: [BD 41-1629] Slave segment </axi_noc_0/S09_AXI/C0_DDR_LOW0> is excluded from all addressing paths.
+CRITICAL WARNING: [BD 41-2909] Smartconnect block </axi_smc_lpd> has no assigned address segments through any of its interfaces and has its contents undefined, which may lead to black-box errors during implementation
+Resolution: Make sure that there is at least one address assigned through this Smartconnect and endpoints are correctly connected to each other
+ERROR: [Ipconfig 75-886] Total Bandwidth requirement from instance axi_noc_0/inst/MC0_ddrc  on PORT0 is 25125 which is greater than max bandwidth 16000.
+The causes for exceeding the max bandwidth include packetization overhead, small or inefficient burst lengths, PL to NoC data width, and unrealistic bandwidth requests. Please review NoC performance tuning information contained within PG313: Versal ACAP Programmable NoC and Integrated Memory Controller.
+Violating nets and total required bandwidth including packetization overhead for the axi_noc_0/inst/S02_AXI_nmu to axi_noc_0/inst/MC0_ddrc path are:
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S02_AXI_nmu: 100 MB/s; (Requested: 100 MB/s); Best Effort; READ
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S02_AXI_nmu: 25 MB/s; Best Effort; WRITE RESPONSE
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S06_AXI_nmu: 5000 MB/s; (Requested: 5000 MB/s); Best Effort; READ
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S06_AXI_nmu: 1250 MB/s; Best Effort; WRITE RESPONSE
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S07_AXI_nmu: 5000 MB/s; (Requested: 5000 MB/s); Best Effort; READ
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S07_AXI_nmu: 1250 MB/s; Best Effort; WRITE RESPONSE
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S08_AXI_nmu: 5000 MB/s; (Requested: 5000 MB/s); Best Effort; READ
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S08_AXI_nmu: 1250 MB/s; Best Effort; WRITE RESPONSE
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S09_AXI_rpu: 5000 MB/s; (Requested: 5000 MB/s); Best Effort; READ
+	axi_noc_0/inst/MC0_ddrc to axi_noc_0/inst/S09_AXI_rpu: 1250 MB/s; Best Effort; WRITE RESPONSE
+
+ERROR: [Ipconfig 75-885] Total Bandwidth requirement to instance axi_noc_0/inst/MC0_ddrc  on PORT0 is 30150 which is greater than max bandwidth 16000.
+The causes for exceeding the max bandwidth include packetization overhead, small or inefficient burst lengths, PL to NoC data width, and unrealistic bandwidth requests. Please review NoC performance tuning information contained within PG313: Versal ACAP Programmable NoC and Integrated Memory Controller.
+Violating nets and total required bandwidth including packetization overhead for the axi_noc_0/inst/S02_AXI_nmu to axi_noc_0/inst/MC0_ddrc path are:
+	axi_noc_0/inst/S02_AXI_nmu to axi_noc_0/inst/MC0_ddrc: 25 MB/s; Best Effort; READ REQUEST
+	axi_noc_0/inst/S02_AXI_nmu to axi_noc_0/inst/MC0_ddrc: 125 MB/s; (Requested: 100 MB/s); Best Effort; WRITE
+	axi_noc_0/inst/S06_AXI_nmu to axi_noc_0/inst/MC0_ddrc: 1250 MB/s; Best Effort; READ REQUEST
+	axi_noc_0/inst/S06_AXI_nmu to axi_noc_0/inst/MC0_ddrc: 6250 MB/s; (Requested: 5000 MB/s); Best Effort; WRITE
+	axi_noc_0/inst/S07_AXI_nmu to axi_noc_0/inst/MC0_ddrc: 1250 MB/s; Best Effort; READ REQUEST
+	axi_noc_0/inst/S07_AXI_nmu to axi_noc_0/inst/MC0_ddrc: 6250 MB/s; (Requested: 5000 MB/s); Best Effort; WRITE
+	axi_noc_0/inst/S08_AXI_nmu to axi_noc_0/inst/MC0_ddrc: 1250 MB/s; Best Effort; READ REQUEST
+	axi_noc_0/inst/S08_AXI_nmu to axi_noc_0/inst/MC0_ddrc: 6250 MB/s; (Requested: 5000 MB/s); Best Effort; WRITE
+	axi_noc_0/inst/S09_AXI_rpu to axi_noc_0/inst/MC0_ddrc: 1250 MB/s; Best Effort; READ REQUEST
+	axi_noc_0/inst/S09_AXI_rpu to axi_noc_0/inst/MC0_ddrc: 6250 MB/s; (Requested: 5000 MB/s); Best Effort; WRITE
+
+ERROR: [Ipconfig 75-136] Number of Master NoC Instances with Type PS_RPU (2) is greater than available resources in the selected device (1)
+ERROR: [BD 41-1783] NOC Compiler failed. 
+validate_bd_design: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2842.648 ; gain = 42.102
+ERROR: [Common 17-39] 'validate_bd_design' failed due to earlier errors.
+
+    while executing
+"validate_bd_design"
+    (file "build_all_dma_v2.tcl" line 363)
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 31 15:30:34 2026...
